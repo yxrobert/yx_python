@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -165,15 +164,17 @@ color=#FF0000>电影下载首页</font></b></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
 </ul>
 <div class="x"></div>
 <div class="title_all"><h1><font
-color=#FF0000>〓没有找到需要的影片吗？请您&nbsp;<b><a href="https://www.dytt8.net/app.html" target="_blank"> <font color=blue>下载网站APP</font></a></b>&nbsp;试试,搜索更快,不占资源，简单实用！或者请下次再来！欢迎您常来看看！</font></h1></div>
+color=#FF0000>〓没有找到需要的影片吗？请您&nbsp;<b><a href="https://www.dytt8.net/app.html" target="_blank"> <font color=blue>下载网站APP</font></a></b> &nbsp;&nbsp;试试,搜索更快,不占资源，简单实用！或者请下次再来！欢迎您常来看看！</font></h1></div>
 
-
+ 
 <br><br>
+ 
 
 <b>&nbsp;<a href="http://www.ygdy8.com/" target="_blank"> <font
 color=#FF0000>点这里返回首页下载！</font></a></b>
 
-温馨提示：被迅雷封的资源，可用磁力链下载 ,祝您观影快乐，开心每一天！请大家不要厌恶网站广告,不喜欢可关掉广告,网站经常都承受着大流量攻击，广告仅能维持网站所需服务器和硬防费用,感谢朋友们一如既往的支持！大家的支持就是网站维持下去的动力!江苏的朋友,如果打不开网站请修改DNS,首选DNS 服务器地址：修改为：8.8.8.8 ，好用速度快！
+温馨提示：被迅雷封的资源，可用可用磁力链下载!祝您观影快乐，开心每一天！请大家不要厌恶网站广告,不喜欢可关掉广告,网站经常都承受着大流量攻击，广告仅能维持网站所需服务器和硬防费用,感谢朋友们一如既往的支持！大家的支持就是网站维持下去的动力！江苏的朋友,如果打不开网站请修改DNS,首选DNS 服务器地址：修改为：8.8.8.8 ，好用速度快！
+
 </div>
 <div class="x"></div>
 </div>
@@ -197,7 +198,7 @@ color=#FF0000>点这里返回首页下载！</font></a></b>
 <div class="footer">
 <a href="/index.html">关于本站</a> - <a href="/index.html">网站帮助</a> - <a href="/index.html">下载声明</a> - <a href="http://www.ygdy8.com/plus/sitemap.html">网站地图</a> </a><br />
 Copyright @ 2018 www.ygdy8.com. All Rights Reserved .<div style='display:none'>
-
+<script language=javascript src="/js/tj.js"></script> 
 </div><br />
 </div>
 </div>

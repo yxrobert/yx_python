@@ -34,6 +34,22 @@ def request_url(url):
 			pass
 
 
+# def parse_name_list(name_list):
+# 	l = []
+# 	v = 0
+
+# 	for i in name_list:
+
+# 		print v 
+# 		v += 1
+# 		print(i)
+# 		# if i.is_text:
+# 		# 	print str(i[0])
+# 		# 	l.append(str(i[0]))
+# 		# else:
+# 		# 	child = i[0].text
+# 		# 	l.append(child.text)
+# 	return l
 
 def get_search_result(film_name):
 
@@ -55,10 +71,17 @@ def get_search_result(film_name):
 	
 	# print(addr_list)
 	# print(name_list)
+
+	# l = parse_name_list(name_list)
+	# print(name_list)
+	l = []
+	for i in name_list:
+		s = "%s" % i
+		l.append(s)
 	# for i in name_list:
 	# 	print(i)
-
-	return addr_list, name_list
+	# print l
+	return addr_list, l
 
 
 def get_movie_addr(url_addr):
@@ -73,14 +96,14 @@ def get_movie_addr(url_addr):
 	tail = url_addr.rfind('.')
 	save_name = url_addr[head+1:tail] + '.txt'
 	# print(save_name)
-	with open(save_name, 'w') as f:
-		f.write(req.text)
+	# with open(save_name, 'w') as f:
+	# 	f.write(req.text)
 
 	# 
 	addr_list = root.xpath(
 	    '//table[@align="center"]/tbody/tr/td/a/@href')
 
-	# print name_list
+	# print addr_list
 	l = []
 	for i in addr_list:
 		s = "%s" % i
@@ -95,15 +118,20 @@ def get_movie(movie_name):
 	for i in movie_list:
 		addr_list.append(get_movie_addr(i))
 
-	content = ""
-	# print len(name_list), len(addr_list)
-	count = min(len(name_list), len(addr_list))
-	# print count
-	for i in range(count):
-		print i
-		content += str(name_list[i]) + "\n"
-		content += str(name_list[i+1]) + "\n"
-		content += str(addr_list[i]) + "\n\n"
+		content = "电影列表：\n"
+	n = 0
+	for i in name_list:
+		if n%2 == 0:
+			content += str(i)
+			content += movie_name
+		else:
+			content += str(i) + "\n"
+		n += 1
+	content += "\n\n"
+	content += "下载链接：\n"
+	for i in addr_list:
+		content += str(i[0].strip()) + "\n\n"
+	content += "\n"
 
 	print content
 	return content
