@@ -53,16 +53,17 @@ def get_search_result(film_name):
 	name_list = root.xpath(
 	    '//div[@class="co_content8"]/ul/tr/td[@valign="top"]/table/tr/td[@width="55%"]/b/a/text()')
 	
-	print addr_list, name_list
-	for i in name_list:
-		print i
+	# print(addr_list)
+	# print(name_list)
+	# for i in name_list:
+	# 	print(i)
 
 	return addr_list, name_list
 
 
 def get_movie_addr(url_addr):
 	url_addr = main_rul + url_addr
-	print url_addr
+	# print(url_addr)
 	req = requests.get(url_addr, headers=headers)
 	req.encoding = 'gbk'
 	root = etree.HTML(req.text)
@@ -71,25 +72,51 @@ def get_movie_addr(url_addr):
 	head = url_addr.rfind('/')
 	tail = url_addr.rfind('.')
 	save_name = url_addr[head+1:tail] + '.txt'
-	print save_name
+	# print(save_name)
 	with open(save_name, 'w') as f:
 		f.write(req.text)
 
 	# 
-	name_list = root.xpath(
+	addr_list = root.xpath(
 	    '//table[@align="center"]/tbody/tr/td/a/@href')
+
 	# print name_list
-	for i in name_list:
+	l = []
+	for i in addr_list:
+		s = "%s" % i
+		l.append(s)
+
+	return l
+
+
+def get_movie(movie_name):
+	movie_list, name_list = get_search_result(movie_name)
+	addr_list = []
+	for i in movie_list:
+		addr_list.append(get_movie_addr(i))
+
+	content = ""
+	# print len(name_list), len(addr_list)
+	count = min(len(name_list), len(addr_list))
+	# print count
+	for i in range(count):
 		print i
-	
+		content += str(name_list[i]) + "\n"
+		content += str(name_list[i+1]) + "\n"
+		content += str(addr_list[i]) + "\n\n"
+
+	print content
+	return content
+
 def main():
 
 	# file_name = "蝙蝠侠"
 	file_name = "触不可及"
+	get_movie(file_name)
 
-	addr_list, name_list = get_search_result(file_name)
-	for i in addr_list:
-		get_movie_addr(i)
+	# addr_list, name_list = get_search_result(file_name)
+	# for i in addr_list:
+	# 	get_movie_addr(i)
 	# 	# break
 	# get_movie_addr("/html/gndy/dyzz/20120326/36995.html")
 
