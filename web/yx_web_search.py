@@ -46,7 +46,7 @@ def request_url(url):
 # 	film_list = div.find_all('table',border="0",width="100%")
 # 	return film_list
 
-
+save_file = "web.txt"
 def get_movie(film_name):
 
 	film_name = film_name.encode('gb2312')
@@ -59,49 +59,59 @@ def get_movie(film_name):
 	req.encoding = 'gbk'
 	root = etree.HTML(req.text)
 
+	with open(save_file, 'w') as f:
+		f.write(req.text)
+
+	name_list = root.xpath(
+	    '//div[@class="co_content8"]/ul/tr/td/text()')
+	    # '//div[@class="co_content8"]/ul/tr/td[@width="55%"]/b/a/@href')
+	for i in name_list:
+		print i
+
+
 	# name_list = root.xpath(
 	#     '//a[contains(@href, "forum.php?") and @onclick="atarget(this)"]/text()')
 	# url_list = root.xpath(
 	#     '//a[contains(@href, "forum.php?") and @onclick="atarget(this)"]/@href')
 
- 	mvsearch_list = root.xpath(
-                '//div[@class="co_content8"]/ul/tr/td/table[@width="100%"]')
+ # 	mvsearch_list = root.xpath(
+ #                '//div[@class="co_content8"]/ul/tr/td/table[@width="100%"]')
 
-	if len(mvsearch_list) == 0:
-		print("未搜索到任何内容")
-		return -1
+	# if len(mvsearch_list) == 0:
+	# 	print("未搜索到任何内容")
+	# 	return -1
 
 
-	mvcontent_url = []
-	mvcontent_title = []
+	# mvcontent_url = []
+	# mvcontent_title = []
 
-    # 提取搜索结果中的电影链接
-	mvsearch_list_len = len(mvsearch_list)
-	for idx in range(1, mvsearch_list_len+1):
-        # 提取链接
-		mv_title_url = etree_html.xpath(
-			mvsearch_xpath + '[{0}]//a[@href]/@href'.format(idx))
-		# print(mv_title_url)
+ #    # 提取搜索结果中的电影链接
+	# mvsearch_list_len = len(mvsearch_list)
+	# for idx in range(1, mvsearch_list_len+1):
+ #        # 提取链接
+	# 	mv_title_url = etree_html.xpath(
+	# 		mvsearch_xpath + '[{0}]//a[@href]/@href'.format(idx))
+	# 	# print(mv_title_url)
 
-		if mv_title_url == None:
-			print("解析出错!")
-			return -1
+	# 	if mv_title_url == None:
+	# 		print("解析出错!")
+	# 		return -1
 
-		# 过滤掉游戏
-		if mv_title_url[0].find("/html/game/") < 0:
-			mv_title_url = "{0}{1}".format(MOVIE_URL, mv_title_url[0])
-			mvcontent_url.insert(idx-1, mv_title_url)
-			# 提取标题
-			mv_title_str_lst = etree_html.xpath(
-				mvsearch_xpath + '[{0}]//a[@href]//text()'.format(idx))
-			if mv_title_str_lst == None:
-				print("解析出错!")
-				return -1
-			mv_title_str = "".join(mv_title_str_lst)
-			mvcontent_title.insert(idx-1, mv_title_str)
-			# print("\t{0}, {1}, {2}".format(idx, mv_title_str, mv_title_url))
+	# 	# 过滤掉游戏
+	# 	if mv_title_url[0].find("/html/game/") < 0:
+	# 		mv_title_url = "{0}{1}".format(MOVIE_URL, mv_title_url[0])
+	# 		mvcontent_url.insert(idx-1, mv_title_url)
+	# 		# 提取标题
+	# 		mv_title_str_lst = etree_html.xpath(
+	# 			mvsearch_xpath + '[{0}]//a[@href]//text()'.format(idx))
+	# 		if mv_title_str_lst == None:
+	# 			print("解析出错!")
+	# 			return -1
+	# 		mv_title_str = "".join(mv_title_str_lst)
+	# 		mvcontent_title.insert(idx-1, mv_title_str)
+	# 		# print("\t{0}, {1}, {2}".format(idx, mv_title_str, mv_title_url))
 
-	mvcontent_len = len(mvcontent_url)
+	# mvcontent_len = len(mvcontent_url)
 
 
 
@@ -109,7 +119,8 @@ def get_movie(film_name):
 
 def main():
 
-	file_name = "触不可及"
+	file_name = "蝙蝠侠"
+	# file_name = "触不可及"
 	# print file_name
 	# movie_list = crawls_home(file_name)
 	get_movie(file_name)
