@@ -17,7 +17,7 @@ sys.setdefaultencoding('UTF-8')
 # sys.setdefaultencoding('ISO-8859-1')
 
 
-# main_rul = "http://s.ygdy8.com/plus/so.php?typeid=1&keyword=%s"
+main_rul = "https://www.ygdy8.com"
 # url = 'http://www.hello.world/你好世界'
 # url_encode = quote(url, safe=string.printable)
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
@@ -33,97 +33,65 @@ def request_url(url):
 		except:
 			pass
 
-# def crawls_home(film_name):
-# 	name = quote(film_name, safe=string.printable)
-# 	print name
-# 	url = "http://s.ygdy8.com/plus/so.php?typeid=1&keyword=%s" % name
-# 	html = request_url(url)
-# 	soup = BeautifulSoup(html,'lxml')
-# 	print soup
-# 	div = soup.find('div',class_="co_content8")
-# 	if div is None:
-# 		return ['没有搜到相应电影']
-# 	film_list = div.find_all('table',border="0",width="100%")
-# 	return film_list
 
-save_file = "web.txt"
-def get_movie(film_name):
+
+def get_search_result(film_name):
 
 	film_name = film_name.encode('gb2312')
 	name = quote(film_name, safe=string.printable)
 	url = "http://s.ygdy8.com/plus/so.php?typeid=1&keyword=%s" % name
 	req = requests.get(url, headers=headers)
-	# print req.encoding
-	# print req.text
 
 	req.encoding = 'gbk'
 	root = etree.HTML(req.text)
 
-	with open(save_file, 'w') as f:
+	with open("web.txt", 'w') as f:
 		f.write(req.text)
 
+	addr_list = root.xpath(
+	    '//div[@class="co_content8"]/ul/tr/td[@valign="top"]/table/tr/td[@width="55%"]/b/a/@href')
 	name_list = root.xpath(
-	    '//div[@class="co_content8"]/ul/tr/td/text()')
-	    # '//div[@class="co_content8"]/ul/tr/td[@width="55%"]/b/a/@href')
+	    '//div[@class="co_content8"]/ul/tr/td[@valign="top"]/table/tr/td[@width="55%"]/b/a/text()')
+	
+	print addr_list, name_list
 	for i in name_list:
 		print i
 
-
-	# name_list = root.xpath(
-	#     '//a[contains(@href, "forum.php?") and @onclick="atarget(this)"]/text()')
-	# url_list = root.xpath(
-	#     '//a[contains(@href, "forum.php?") and @onclick="atarget(this)"]/@href')
-
- # 	mvsearch_list = root.xpath(
- #                '//div[@class="co_content8"]/ul/tr/td/table[@width="100%"]')
-
-	# if len(mvsearch_list) == 0:
-	# 	print("未搜索到任何内容")
-	# 	return -1
+	return addr_list, name_list
 
 
-	# mvcontent_url = []
-	# mvcontent_title = []
+def get_movie_addr(url_addr):
+	url_addr = main_rul + url_addr
+	print url_addr
+	req = requests.get(url_addr, headers=headers)
+	req.encoding = 'gbk'
+	root = etree.HTML(req.text)
 
- #    # 提取搜索结果中的电影链接
-	# mvsearch_list_len = len(mvsearch_list)
-	# for idx in range(1, mvsearch_list_len+1):
- #        # 提取链接
-	# 	mv_title_url = etree_html.xpath(
-	# 		mvsearch_xpath + '[{0}]//a[@href]/@href'.format(idx))
-	# 	# print(mv_title_url)
+	# 
+	head = url_addr.rfind('/')
+	tail = url_addr.rfind('.')
+	save_name = url_addr[head+1:tail] + '.txt'
+	print save_name
+	with open(save_name, 'w') as f:
+		f.write(req.text)
 
-	# 	if mv_title_url == None:
-	# 		print("解析出错!")
-	# 		return -1
-
-	# 	# 过滤掉游戏
-	# 	if mv_title_url[0].find("/html/game/") < 0:
-	# 		mv_title_url = "{0}{1}".format(MOVIE_URL, mv_title_url[0])
-	# 		mvcontent_url.insert(idx-1, mv_title_url)
-	# 		# 提取标题
-	# 		mv_title_str_lst = etree_html.xpath(
-	# 			mvsearch_xpath + '[{0}]//a[@href]//text()'.format(idx))
-	# 		if mv_title_str_lst == None:
-	# 			print("解析出错!")
-	# 			return -1
-	# 		mv_title_str = "".join(mv_title_str_lst)
-	# 		mvcontent_title.insert(idx-1, mv_title_str)
-	# 		# print("\t{0}, {1}, {2}".format(idx, mv_title_str, mv_title_url))
-
-	# mvcontent_len = len(mvcontent_url)
-
-
-
-
-
+	# 
+	name_list = root.xpath(
+	    '//table[@align="center"]/tbody/tr/td/a/@href')
+	# print name_list
+	for i in name_list:
+		print i
+	
 def main():
 
-	file_name = "蝙蝠侠"
-	# file_name = "触不可及"
-	# print file_name
-	# movie_list = crawls_home(file_name)
-	get_movie(file_name)
+	# file_name = "蝙蝠侠"
+	file_name = "触不可及"
+
+	addr_list, name_list = get_search_result(file_name)
+	for i in addr_list:
+		get_movie_addr(i)
+	# 	# break
+	# get_movie_addr("/html/gndy/dyzz/20120326/36995.html")
 
 
 	# with open(save_file, 'w') as f:
