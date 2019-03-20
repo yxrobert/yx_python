@@ -118,7 +118,10 @@ def get_movie(movie_name):
 	for i in movie_list:
 		addr_list.append(get_movie_addr(i))
 
-		content = "电影列表：\n"
+	if len(movie_list) <= 0:
+		return ""
+	
+	content = "电影列表：\n"
 	n = 0
 	for i in name_list:
 		if n%2 == 0:
@@ -139,7 +142,7 @@ def get_movie(movie_name):
 def main():
 
 	# file_name = "蝙蝠侠"
-	file_name = "触不可及"
+	file_name = "小偷家族"
 	get_movie(file_name)
 
 	# addr_list, name_list = get_search_result(file_name)
