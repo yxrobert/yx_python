@@ -99,7 +99,7 @@ dear_list = {
 def run_daily_job():
 	scheduler = BlockingScheduler()
 	for k in dear_list:
-		scheduler.add_job(self.start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
+		scheduler.add_job(start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
 		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
 	# 每隔2分钟发送一条数据用于测试。
 	# scheduler.add_job(self.start_today_info, 'interval', seconds=120)
