@@ -88,9 +88,9 @@ def start_today_info(name, city_code):
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
-	u"祖拉" : [9, 30, 101010300],
-	# u"Lifecoach" : [9, 30, 101010300],
-	# u"王洋" : [6, 15, 101010300],
+	u"单文博" : [9, 30, 101010300],
+	u"Lifecoach" : [9, 30, 101010300],
+	u"王洋" : [6, 15, 101010300],
 }
 
 
@@ -99,20 +99,13 @@ def run_daily_job():
 	scheduler = BackgroundScheduler()
 	for k in dear_list:
 		print(k)
-		scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
-		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
-	# 每隔2分钟发送一条数据用于测试。
-	# scheduler.add_job(self.start_today_info, 'interval', seconds=120)
+		# scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
+		scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
 	scheduler.start()
-	print("scheduler.start")
 
 
 # 
 #itchat.auto_login(enableCmdQR=2)
-
-# t = threading.Thread(target=run_daily_job, name='daily')
-# t.start()
-# t.join()
 
 run_daily_job()
 itchat.auto_login(True)
