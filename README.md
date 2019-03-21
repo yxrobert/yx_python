@@ -23,3 +23,5 @@ git pull origin master
 git add .
 git commit -m 'first_commit'
 git push origin master
+
+ssh-keygen -t rsa -C "yx_robert@163.com"
