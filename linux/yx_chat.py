@@ -71,7 +71,7 @@ def text_reply(msg):
 
 # 
 def get_uuid(name):
-	friends = itchat.search_friends(name=wechat_name)
+	friends = itchat.search_friends(name)
 	if not friends:
 		print('昵称错误')
 		return ""
@@ -97,9 +97,9 @@ dear_list = {
 
 # 
 def run_daily_job():
-	print("run_daily_job")
 	scheduler = BlockingScheduler()
 	for k in dear_list:
+		print(k)
 		scheduler.add_job(start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
 		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
 	# 每隔2分钟发送一条数据用于测试。
