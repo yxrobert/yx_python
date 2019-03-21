@@ -112,7 +112,7 @@ def run_daily_job():
 
 t = threading.Thread(target=run_daily_job, name='daily')
 t.start()
-t.join()
+# t.join()
 
 itchat.auto_login(True)
 itchat.run()
