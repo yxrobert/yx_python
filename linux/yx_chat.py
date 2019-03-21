@@ -81,16 +81,15 @@ def get_uuid(name):
 
 def start_today_info(name, city_code):
 	print(name)
-	print(city_code)
 	today_msg = weather.get_weather_info(city_code)
-	print(today_msg)
 	name_uuid = get_uuid(name)
-	print(today_msg)
+	print(name_uuid)
 
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
-	u"Lifecoach" : [9, 30, 101010300],
+	u"祖拉" : [9, 30, 101010300],
+	# u"Lifecoach" : [9, 30, 101010300],
 	# u"王洋" : [6, 15, 101010300],
 }
 
@@ -100,7 +99,7 @@ def run_daily_job():
 	scheduler = BlockingScheduler()
 	for k in dear_list:
 		print(k)
-		scheduler.add_job(start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
+		scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
 		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
 	# 每隔2分钟发送一条数据用于测试。
 	# scheduler.add_job(self.start_today_info, 'interval', seconds=120)
