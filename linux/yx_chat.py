@@ -5,7 +5,7 @@ import yx_search_movie as movie
 import yx_weather as weather
 from imp import reload
 import sys
-import itchat, time
+import itchat, time, threading
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 
@@ -110,8 +110,9 @@ def run_daily_job():
 # 
 #itchat.auto_login(enableCmdQR=2)
 
+t = threading.Thread(target=run_daily_job, name='daily')
+t.start()
+t.join()
+
 itchat.auto_login(True)
 itchat.run()
-run_daily_job()
-
-print("itchat.run")
