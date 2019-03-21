@@ -19,7 +19,7 @@ err_log = "err.log"
 #
 def find_movie(msg, key, idx):
 	name = msg['Text'][idx + len(key):].strip()
-	print name
+	print(name)
 	content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
