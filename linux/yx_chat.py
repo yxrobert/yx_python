@@ -104,6 +104,7 @@ def run_daily_job():
 	# 每隔2分钟发送一条数据用于测试。
 	# scheduler.add_job(self.start_today_info, 'interval', seconds=120)
 	scheduler.start()
+	print("scheduler.start")
 
 
 # 
@@ -111,3 +112,4 @@ def run_daily_job():
 itchat.auto_login(True)
 run_daily_job()
 itchat.run()
+print("itchat.run")
