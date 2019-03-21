@@ -109,7 +109,8 @@ def run_daily_job():
 
 # 
 #itchat.auto_login(enableCmdQR=2)
-itchat.auto_login(True)
+
 run_daily_job()
+itchat.auto_login(True)
 itchat.run()
 print("itchat.run")
