@@ -47,11 +47,12 @@ def get_weather_info(city_code):
 
 		content = today_time + "\n"
 		# content += delta_msg + "\.\n"
-		content += notice + "\n"
 		content += temperature + "\n"
 		content += wind + "\n"
 		content += aqi + "\n"
-		content += dictum_msg + "\n"
+		content += notice + "\n"
+		
+		# content += dictum_msg + "\n"
 		# content += sweet_words + "\n"
 
 		print(content)
