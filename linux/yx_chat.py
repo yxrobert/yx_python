@@ -1,17 +1,18 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-import yx_search_movie as yx
+import yx_search_movie as movie
+import yx_weather as weather
 from imp import reload
 import sys
 import itchat, time
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 reload(sys)
 
 
 # 
-dear_list = [u'老妹3']
 movie_list = {u"小偷家族":"magnet:?xt=urn:btih:047FCD07C11D153A8B7A724D4C253BF373AEF115"}
 err_log = "err.log"
 
@@ -23,7 +24,7 @@ def find_movie(msg, key, idx):
 	content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
-	content = yx.get_movie(name)
+	content = movie.get_movie(name)
 	if len(content) < 5:
 		content = '没有找到资源哦，没关系，可以带你去电影院去看！'
 		itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
@@ -47,7 +48,6 @@ def find_movie(msg, key, idx):
 
 	return True
 
-
 # 
 func_list = {}
 func_list[u"我想看电影"] = find_movie
@@ -68,6 +68,46 @@ def text_reply(msg):
 				f.write(msg['Text'] + "\n")
 
 
+
+# 
+def get_uuid(name):
+	friends = itchat.search_friends(name=wechat_name)
+	if not friends:
+		print('昵称错误')
+		return ""
+	else:
+		name_uuid = friends[0].get('UserName')
+		return name_uuid
+
+def start_today_info(name, city_code):
+	print(name)
+	print(city_code)
+	today_msg = weather.get_weather_info(city_code)
+	print(today_msg)
+	name_uuid = get_uuid(name)
+	print(today_msg)
+
+	itchat.send(today_msg, toUserName=name_uuid)
+
+dear_list = {
+	u"Lifecoach" : [9, 30, 101010300],
+	# u"王洋" : [6, 15, 101010300],
+}
+
+
+# 
+def run_daily_job():
+	scheduler = BlockingScheduler()
+	for k in dear_list:
+		scheduler.add_job(self.start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
+		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
+	# 每隔2分钟发送一条数据用于测试。
+	# scheduler.add_job(self.start_today_info, 'interval', seconds=120)
+	scheduler.start()
+
+
+# 
 #itchat.auto_login(enableCmdQR=2)
 itchat.auto_login(True)
+run_daily_job()
 itchat.run()
