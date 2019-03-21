@@ -6,7 +6,7 @@ import yx_weather as weather
 from imp import reload
 import sys
 import itchat, time, threading
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.blocking import BackgroundScheduler
 
 
 reload(sys)
