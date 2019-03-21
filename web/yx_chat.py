@@ -4,14 +4,13 @@
 
 import itchat, time
 import sys
-import yx_web_search as yx
+import yx_search_movie as yx
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # 
 dear_list = [u'老妹3']
-# key = u"我想看电影"
 movie_list = {u"小偷家族":"magnet:?xt=urn:btih:047FCD07C11D153A8B7A724D4C253BF373AEF115"}
 err_log = "err.log"
 
@@ -64,7 +63,7 @@ def text_reply(msg):
 		ret = func_list[key](msg, key, idx)
 
 		if ret != True:
-			with open(err_log, "w+") as f:
+			with open(err_log, "a") as f:
 				f.write(msg['Text'] + "\n")
 	
 
