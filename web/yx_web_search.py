@@ -12,14 +12,10 @@ import string
 # https://blog.csdn.net/findhappy117/article/details/83748374
 
 reload(sys)
-# sys.setdefaultencoding('gb2312')
 sys.setdefaultencoding('UTF-8')
-# sys.setdefaultencoding('ISO-8859-1')
 
 
 main_rul = "https://www.ygdy8.com"
-# url = 'http://www.hello.world/你好世界'
-# url_encode = quote(url, safe=string.printable)
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
 
 
@@ -33,23 +29,6 @@ def request_url(url):
 		except:
 			pass
 
-
-# def parse_name_list(name_list):
-# 	l = []
-# 	v = 0
-
-# 	for i in name_list:
-
-# 		print v 
-# 		v += 1
-# 		print(i)
-# 		# if i.is_text:
-# 		# 	print str(i[0])
-# 		# 	l.append(str(i[0]))
-# 		# else:
-# 		# 	child = i[0].text
-# 		# 	l.append(child.text)
-# 	return l
 
 def get_search_result(film_name):
 
@@ -141,8 +120,8 @@ def get_movie(movie_name):
 
 def main():
 
-	# file_name = "蝙蝠侠"
-	file_name = "小偷家族"
+	file_name = "复仇者联盟"
+	# file_name = "小偷家族"
 	get_movie(file_name)
 
 	# addr_list, name_list = get_search_result(file_name)

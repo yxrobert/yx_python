@@ -14,6 +14,7 @@ reload(sys)
 def text_reply(msg):
     itchat.send('%s: %s'%(msg['Type'], msg['Text']), msg['FromUserName'])
 
+
 #itchat.auto_login(enableCmdQR=2)
 itchat.auto_login(True)
 itchat.run()
