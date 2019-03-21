@@ -96,7 +96,7 @@ dear_list = {
 
 # 
 def run_daily_job():
-	scheduler = BlockingScheduler()
+	scheduler = BackgroundScheduler()
 	for k in dear_list:
 		print(k)
 		scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
@@ -110,9 +110,10 @@ def run_daily_job():
 # 
 #itchat.auto_login(enableCmdQR=2)
 
-t = threading.Thread(target=run_daily_job, name='daily')
-t.start()
+# t = threading.Thread(target=run_daily_job, name='daily')
+# t.start()
 # t.join()
 
+run_daily_job()
 itchat.auto_login(True)
 itchat.run()
