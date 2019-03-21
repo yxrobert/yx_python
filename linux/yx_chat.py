@@ -97,6 +97,7 @@ dear_list = {
 
 # 
 def run_daily_job():
+	print("run_daily_job")
 	scheduler = BlockingScheduler()
 	for k in dear_list:
 		scheduler.add_job(start_today_info, 'interval', seconds=40, args=(k,dear_list[k][2],))
