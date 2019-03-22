@@ -70,7 +70,7 @@ def text_reply(msg):
 
 
 # 
-def get_uuid(name):
+def get_uuid_by_name(name):
 	friends = itchat.search_friends(name)
 	if not friends:
 		print('昵称错误')
@@ -79,18 +79,29 @@ def get_uuid(name):
 		name_uuid = friends[0].get('UserName')
 		return name_uuid
 
+
+def get_uuid_by_account(acc):
+	friends = itchat.search_friends(wechatAccount=acc)
+	if not friends:
+		print('昵称错误')
+		return ""
+	else:
+		name_uuid = friends[0].get('UserName')
+		return name_uuid
+
+
 def start_today_info(name, city_code):
 	print(name)
 	today_msg = weather.get_weather_info(city_code)
-	name_uuid = get_uuid(name)
+	name_uuid = get_uuid_by_account(name)
 	print(name_uuid)
 
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
-	u"单文博" : [9, 30, 101010300],
-	u"Lifecoach" : [9, 30, 101010300],
-	u"王洋" : [6, 15, 101010300],
+	# u"单文博" : [9, 30, 101010300, u"swb123aa"],
+	u"Lifecoach" : [12, 1, 101010300, u"yanxie1103"],
+	# u"王洋" : [6, 15, 101010300, u"wxid_4070450704312"],
 }
 
 
@@ -98,9 +109,9 @@ dear_list = {
 def run_daily_job():
 	scheduler = BackgroundScheduler()
 	for k in dear_list:
-		print(k)
+		arg = (dear_list[k][3], dear_list[k][2],)
 		# scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
-		scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=(k,dear_list[k][2],))
+		scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=arg)
 	scheduler.start()
 
 
