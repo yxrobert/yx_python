@@ -61,6 +61,8 @@ def text_reply(msg):
 
 	for key in func_list:
 		idx = msg['Text'].find(key)
+		if idx == -1:
+			continue
 		ret = func_list[key](msg, key, idx)
 
 		if ret != True:
