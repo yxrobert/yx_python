@@ -100,7 +100,7 @@ def start_today_info(name, city_code):
 
 dear_list = {
 	# u"单文博" : [9, 30, 101010300, u"swb123aa"],
-	u"Lifecoach" : [12, 1, 101010300, u"yanxie1103"],
+	u"Lifecoach" : [12, 4, 101010300, u"yanxie1103"],
 	# u"王洋" : [6, 15, 101010300, u"wxid_4070450704312"],
 }
 
