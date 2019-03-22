@@ -84,7 +84,7 @@ def get_uuid_by_account(acc):
 	friends = itchat.search_friends(wechatAccount=acc)
 	if not friends:
 		print('昵称错误')
-		return ""
+		return "None"
 	else:
 		name_uuid = friends[0].get('UserName')
 		return name_uuid
@@ -99,8 +99,8 @@ def start_today_info(name, city_code):
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
-	u"单文博" : [12, 45, 101010300, u"swb123aa"],
-	u"Lifecoach" : [12, 45, 101010300, u"yanxie1103"],
+	u"单文博" : [12, 47, 101010300, u"swb123aa"],
+	u"Lifecoach" : [12, 47, 101010300, u"yanxie1103"],
 	# u"王洋" : [6, 15, 101010300, u"wxid_4070450704312"],
 }
 
