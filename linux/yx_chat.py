@@ -101,7 +101,7 @@ def start_today_info(name, city_code):
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
-	u"单文博" : [6, 30, 101010300, u"swb123aa"],
+	# u"单文博" : [6, 30, 101010300, u"swb123aa"],
 	u"Lifecoach" : [9, 30, 101010300, u"yanxie1103"],
 	u'王洋🐳' : [6, 15, 101010300, u"wxid_4070450704312"],
 }
