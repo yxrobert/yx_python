@@ -4,10 +4,24 @@
 from datetime import datetime
 import time
 import requests
-import json
+import json, sys
+
+# reload(sys)
+# sys.setdefaultencoding('UTF-8')
 
 weather_url = 'http://t.weather.sojson.com/api/weather/city/'
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
+
+weather_moji_url = 'https://tianqi.moji.com/weather/china'
+
+
+def get_weather_info_moji(position):
+	url = weather_url + str(city_code)
+	resp = requests.get(url, headers=headers)
+
+	if resp.status_code == 200 and resp.json().get('status') == 200:
+		root = etree.HTML(resp.text)
+
 
 
 def get_weather_info(city_code):
@@ -20,7 +34,7 @@ def get_weather_info(city_code):
 		# 今日天气
 		today_weather = weatherJson.get('data').get('forecast')[1]
 		# 今日日期
-		today_time = datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')
+		today_time = datetime.now().strftime('%Y年%m月%d日 ') + today_weather.get('week')
 		# 今日天气注意事项
 		notice = today_weather.get('notice')
 		# 温度
@@ -31,14 +45,25 @@ def get_weather_info(city_code):
 
 		temperature = u"温度 : %s/%s" % (low_c, high_c)
 
+		# PM
+		pm = weatherJson.get('data').get('pm25')
+		aqi = weatherJson.get('data').get('quality')
+		ganmao = weatherJson.get('data').get('ganmao')
+		pm = "空气质量 : %s\npm2.5 : %s\n%s" % (aqi, pm, ganmao)
+
+
 		# 风
 		fx = today_weather.get('fx')
 		fl = today_weather.get('fl')
 		wind = "%s : %s" % (fx, fl)
 
-		# 空气指数
-		aqi = today_weather.get('aqi')
-		aqi = u"空气 : %s" % aqi
+		# # 空气指数
+		# aqi = today_weather.get('aqi')
+		# aqi = u"空气质量 : %s" % aqi
+
+		# 天气
+		tianqi = today_weather.get('type')
+		tianqi = u"今日天气 : %s" % tianqi
 
 		# 在一起，一共多少天了
 		# start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
@@ -46,10 +71,11 @@ def get_weather_info(city_code):
 		# delta_msg = f'宝贝这是我们在一起的第 {day_delta} 天'
 
 		content = today_time + "\n"
+		content += pm + "\n"
+		content += tianqi + "\n"
 		# content += delta_msg + "\.\n"
 		content += temperature + "\n"
 		content += wind + "\n"
-		content += aqi + "\n"
 		content += notice + "\n"
 		
 		# content += dictum_msg + "\n"
@@ -62,6 +88,7 @@ def get_weather_info(city_code):
 def main():
 	s = get_weather_info(101010300)
 	print(s)
+
 
 
 
