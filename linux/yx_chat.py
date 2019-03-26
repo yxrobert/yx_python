@@ -48,9 +48,17 @@ def find_movie(msg, key, idx):
 
 	return True
 
+def get_weather(msg, key, idx):
+	city_code = 101010300
+	content = weather.get_weather_info(city_code)
+	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
+
 # 
 func_list = {}
 func_list[u"我想看电影"] = find_movie
+func_list[u"天气怎么样"] = get_weather
+func_list[u"看天气"] = get_weather
+func_list[u"天气好"] = get_weather
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
@@ -103,7 +111,7 @@ def start_today_info(name, city_code):
 dear_list = {
 	# u"单文博" : [6, 30, 101010300, u"swb123aa"],
 	u"Lifecoach" : [9, 30, 101010300, u"yanxie1103"],
-	u'王洋🐳' : [6, 15, 101010300, u"wxid_4070450704312"],
+	# u'王洋🐳' : [6, 15, 101010300, u"wxid_4070450704312"],
 }
 
 # 
