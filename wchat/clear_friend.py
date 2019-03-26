@@ -20,7 +20,7 @@ print(u'检测1000位好友需要34分钟， 以此类推。')
 print(u'为了你的账号安全着想，这个速度刚好。')
 print(u'在程序运行期间请让程序保持运行，网络保持连接。')
 print(u'请不要从手机端手动退出。')
-input(u'按ENTER键继续...')
+# input(u'按ENTER键继续...')
 
 
 friends = itchat.get_friends(update=True)
@@ -31,7 +31,8 @@ for i in range(1, lenght):
 	# 没有人能收到此信息，笔者此刻日期为2019/1/6 8:30，到目前为止微信bug还没修复。
 	# 所以迭代从除去自己后的第二位好友开始 range(1, lenght)。
 	itchat.send("జ్ఞా", toUserName=friends[i]['UserName'])
-	print(u'检测到第{i}位好友: {str(friends[i]["NickName"]).center(20, " ")}')
+	nn =str(friends[i]["NickName"]).center(20, " ")
+	print(u'检测到第{%s}位好友: {%s}' % (str(i), nn))
 	# 发送信息速度过快会被微信检测到异常行为。
 	time.sleep(2)
 
