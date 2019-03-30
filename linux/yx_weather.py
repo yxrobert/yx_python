@@ -27,6 +27,10 @@ day_desc = [
 	u"今天",
 	u"明天",
 	u"后天",
+	u"大后天",
+	u"大大后天",
+	u"大大大后天",
+	u"大大大大后天",
 ]
 
 def get_weather_info(city_code, idx = 0):
