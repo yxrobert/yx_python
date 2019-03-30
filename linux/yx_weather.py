@@ -32,7 +32,7 @@ def get_weather_info(city_code):
 	if resp.status_code == 200 and resp.json().get('status') == 200:
 		weatherJson = resp.json()
 		# 今日天气
-		today_weather = weatherJson.get('data').get('forecast')[1]
+		today_weather = weatherJson.get('data').get('forecast')[0]
 		# 今日日期
 		today_time = datetime.now().strftime('%Y年%m月%d日 ') + today_weather.get('week')
 		# 今日天气注意事项
