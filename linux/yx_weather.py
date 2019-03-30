@@ -23,18 +23,26 @@ def get_weather_info_moji(position):
 		root = etree.HTML(resp.text)
 
 
+day_desc = [
+	u"今天",
+	u"明天",
+	u"后天",
+]
 
-def get_weather_info(city_code):
+def get_weather_info(city_code, idx = 0):
 	
 	url = weather_url + str(city_code)
 	resp = requests.get(url, headers=headers)
 
 	if resp.status_code == 200 and resp.json().get('status') == 200:
 		weatherJson = resp.json()
-		# 今日天气
-		today_weather = weatherJson.get('data').get('forecast')[0]
-		# 今日日期
-		today_time = datetime.now().strftime('%Y年%m月%d日 ') + today_weather.get('week')
+		# 天气
+		today_weather = weatherJson.get('data').get('forecast')[idx]
+		# 日期
+		today_time = datetime.now().strftime('%Y年%m月%d日 ') + weatherJson.get('data').get('forecast')[0]
+		# today_time += ('%d日 ') % today_weather.get('date')
+		# today_time += today_weather.get('week')
+
 		# 今日天气注意事项
 		notice = today_weather.get('notice')
 		# 温度
@@ -49,7 +57,7 @@ def get_weather_info(city_code):
 		pm = weatherJson.get('data').get('pm25')
 		aqi = weatherJson.get('data').get('quality')
 		ganmao = weatherJson.get('data').get('ganmao')
-		pm = "空气质量 : %s\npm2.5 : %s\n%s" % (aqi, pm, ganmao)
+		pm = "今日空气质量 : %s\npm2.5 : %s\n%s" % (aqi, pm, ganmao)
 
 
 		# 风
@@ -63,7 +71,7 @@ def get_weather_info(city_code):
 
 		# 天气
 		tianqi = today_weather.get('type')
-		tianqi = u"今日天气 : %s" % tianqi
+		tianqi = day_desc[idx] + u"天气 : %s" % tianqi
 
 		# 在一起，一共多少天了
 		# start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
@@ -87,6 +95,8 @@ def get_weather_info(city_code):
 
 def main():
 	s = get_weather_info(101010300)
+	s = get_weather_info(101010300, 1)
+	s = get_weather_info(101010300, 2)
 	print(s)
 
 
