@@ -66,7 +66,7 @@ day_desc = [
 
 def get_day_desc(desc):
 	for k,v in enumerate(day_desc):
-		if desc.find(k) != -1:
+		if desc.find(v) != -1:
 			return len(day_desc) - k - 1
 	return 0
 
