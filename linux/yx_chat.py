@@ -48,9 +48,23 @@ def find_movie(msg, key, idx):
 
 	return True
 
+day_desc = [
+	u"今天",
+	u"明天",
+	u"后天",
+	u"大后天",
+]
+
+def get_day_desc(desc):
+	for i in range(len(day_desc)):
+		if desc.find(day_desc[i]) != -1:
+			return i
+	return 0
+
 def get_weather(msg, key, idx):
 	city_code = 101010300
-	content = weather.get_weather_info(city_code)
+	d = get_day_desc(msg['Text'])
+	content = weather.get_weather_info(city_code, d)
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
 # 

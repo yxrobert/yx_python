@@ -27,12 +27,16 @@ day_desc = [
 	u"今天",
 	u"明天",
 	u"后天",
+	u"大后天",
 ]
 
 def get_weather_info(city_code, idx = 0):
 	
 	url = weather_url + str(city_code)
 	resp = requests.get(url, headers=headers)
+
+	if idx >= len(day_desc):
+		idx = 0
 
 	if resp.status_code == 200 and resp.json().get('status') == 200:
 		weatherJson = resp.json()
@@ -97,7 +101,7 @@ def main():
 	s = get_weather_info(101010300)
 	s = get_weather_info(101010300, 1)
 	s = get_weather_info(101010300, 2)
-	print(s)
+	# print(s)
 
 
 
