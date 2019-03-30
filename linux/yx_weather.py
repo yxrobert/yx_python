@@ -101,6 +101,7 @@ def main():
 	s = get_weather_info(101010300)
 	s = get_weather_info(101010300, 1)
 	s = get_weather_info(101010300, 2)
+	s = get_weather_info(101010300, 3)
 	# print(s)
 
 
