@@ -39,7 +39,7 @@ def get_weather_info(city_code, idx = 0):
 		# 天气
 		today_weather = weatherJson.get('data').get('forecast')[idx]
 		# 日期
-		today_time = datetime.now().strftime('%Y年%m月%d日 ') + weatherJson.get('data').get('forecast')[0]
+		today_time = datetime.now().strftime('%Y年%m月%d日 ') + weatherJson.get('data').get('forecast')[0].get('week')
 		# today_time += ('%d日 ') % today_weather.get('date')
 		# today_time += today_weather.get('week')
 
