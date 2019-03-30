@@ -55,9 +55,9 @@ day_desc = [
 ]
 
 def get_day_desc(desc):
-	for i in range(len(day_desc)):
-		if desc.find(day_desc[i]) != -1:
-			return i
+	for k,v in enumerate(day_desc):
+		if desc.find(k) != -1:
+			return k
 	return 0
 
 def get_weather(msg, key, idx):
