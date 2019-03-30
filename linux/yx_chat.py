@@ -52,7 +52,6 @@ day_desc = [
 	u"今天",
 	u"明天",
 	u"后天",
-	u"大后天",
 ]
 
 def get_day_desc(desc):
