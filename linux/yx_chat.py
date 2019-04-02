@@ -76,12 +76,17 @@ def get_weather(msg, key, idx):
 	content = weather.get_weather_info(city_code, d)
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
+def get_one(msg, key, idx):
+	content = weather.get_dictum_info()
+	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
+
 # 
 func_list = {}
 func_list[u"我想看电影"] = find_movie
 func_list[u"天气怎么样"] = get_weather
 func_list[u"看天气"] = get_weather
 func_list[u"天气好"] = get_weather
+func_list[u"One"] = get_one
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
@@ -130,8 +135,8 @@ def start_today_info(name, city_code):
 	print(name_uuid)
 	itchat.send(today_msg, toUserName=name_uuid)
 
-	today_msg = weather.get_dictum_info()
-	itchat.send(today_msg, toUserName=name_uuid)
+	# today_msg = weather.get_dictum_info()
+	# itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
 	# u"单文博" : [6, 30, 101010300, u"swb123aa"],
