@@ -34,9 +34,9 @@ day_desc = [
 	u"大大大大后天",
 ]
 
-def get_dictum_info(self):
+def get_dictum_info():
 	user_url = 'http://wufazhuce.com/'
-	resp = requests.get(user_url, headers=self.headers)
+	resp = requests.get(user_url, headers=headers)
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 	# 『one -个』 中的每日一句
 	every_msg = soup_texts.find_all('div', class_='fp-one-cita')[0].find('a').text
