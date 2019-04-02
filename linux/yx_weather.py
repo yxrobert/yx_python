@@ -105,8 +105,8 @@ def get_weather_info(city_code, idx = 0):
 		
 		# content += dictum_msg + "\n"
 		# content += sweet_words + "\n"
-		content += "\n"
-		content += get_dictum_info()
+		# content += "\n"
+		# content += get_dictum_info()
 
 		print(content)
 		return content

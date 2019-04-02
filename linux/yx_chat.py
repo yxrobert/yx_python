@@ -128,12 +128,14 @@ def start_today_info(name, city_code):
 	today_msg = weather.get_weather_info(city_code)
 	name_uuid = get_uuid_by_name(name)
 	print(name_uuid)
+	itchat.send(today_msg, toUserName=name_uuid)
 
+	today_msg = weather.get_dictum_info()
 	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
 	# u"单文博" : [6, 30, 101010300, u"swb123aa"],
-	u"Lifecoach" : [9, 30, 101010300, u"yanxie1103"],
+	u"Lifecoach" : [7, 30, 101010300, u"yanxie1103"],
 	u'王洋🐳' : [6, 15, 101010300, u"wxid_4070450704312"],
 }
 
