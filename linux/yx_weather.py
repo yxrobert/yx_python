@@ -5,6 +5,7 @@ from datetime import datetime
 import time
 import requests
 import json, sys
+from bs4 import BeautifulSoup
 
 # reload(sys)
 # sys.setdefaultencoding('UTF-8')
@@ -32,6 +33,15 @@ day_desc = [
 	u"大大大后天",
 	u"大大大大后天",
 ]
+
+def get_dictum_info(self):
+	user_url = 'http://wufazhuce.com/'
+	resp = requests.get(user_url, headers=self.headers)
+	soup_texts = BeautifulSoup(resp.text, 'lxml')
+	# 『one -个』 中的每日一句
+	every_msg = soup_texts.find_all('div', class_='fp-one-cita')[0].find('a').text
+	return every_msg
+
 
 def get_weather_info(city_code, idx = 0):
 	
@@ -95,6 +105,8 @@ def get_weather_info(city_code, idx = 0):
 		
 		# content += dictum_msg + "\n"
 		# content += sweet_words + "\n"
+		content += "\n"
+		content += get_dictum_info()
 
 		print(content)
 		return content
@@ -102,9 +114,9 @@ def get_weather_info(city_code, idx = 0):
 
 def main():
 	s = get_weather_info(101010300)
-	s = get_weather_info(101010300, 1)
-	s = get_weather_info(101010300, 2)
-	s = get_weather_info(101010300, 3)
+	# s = get_weather_info(101010300, 1)
+	# s = get_weather_info(101010300, 2)
+	# s = get_weather_info(101010300, 3)
 	# print(s)
 
 
