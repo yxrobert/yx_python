@@ -20,7 +20,8 @@ movie_list = {
 	u"太空漫步2001": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
 	u"2001太空漫步": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
 	u"2001太空漫游": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
-	u"太空漫步2001": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
+	u"太空漫游2001": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
+	u"太空漫步": "thunder://QUFlZDJrOi8vfGZpbGV8MjAwMSVFNSVBNCVBQSVFNyVBOSVCQSVFNiVCQyVBQiVFNiVCOCVCOC5CRDEyODAlRTglQjYlODUlRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcubXA0fDMxMzIwODgwNTh8NzYxMzUwQTJGOEFBOTI1RDNDODk5RTY0RTI1Q0IwRDB8aD1SRU0yREhIUUJDV1lEUlpQVFg1UFJEUjIzSE1SMkFNVHwvWlo=",
 	}
 err_log = "err.log"
 
@@ -190,8 +191,8 @@ def start_today_info(name, info):
 dear_list = {
 	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa",# "day_func":0, "cons":"Leo"},
 	u"Lifecoach": {"hour": 7, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 0, "cons": "Taurus"},
-	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
-	u'Ada  阿哒哒💭': {"hour": 0, "minite": 25, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
+	u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
+	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
 }
 
 def run_daily_job():
@@ -203,7 +204,7 @@ def run_daily_job():
 	scheduler.start()
 
 
-#
+#+
 # itchat.auto_login(enableCmdQR=2)
 
 run_daily_job()
