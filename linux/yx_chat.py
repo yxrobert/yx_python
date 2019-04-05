@@ -193,7 +193,6 @@ day_func[1] = get_weather_info_ex
 
 def start_today_info(name, info):
 	day_func[info["day_func"](name, info)
-
 def run_daily_job():
 	scheduler= BackgroundScheduler()
 	for k in dear_list:
