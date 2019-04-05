@@ -162,7 +162,7 @@ def run_daily_job():
 	scheduler = BackgroundScheduler()
 	for k in dear_list:
 		arg = (k, dear_list[k][2],)
-		scheduler.add_job(dear_list[k][3], 'interval', seconds=20, args=(k,dear_list[k][2],))
+		scheduler.add_job(dear_list[k][3](), 'interval', seconds=20, args=(k,dear_list[k][2],))
 		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=arg)
 	scheduler.start()
 
