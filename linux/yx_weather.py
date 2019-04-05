@@ -7,8 +7,8 @@ import requests
 import json, sys
 from bs4 import BeautifulSoup
 
-reload(sys)
-sys.setdefaultencoding('UTF-8')
+# reload(sys)
+# sys.setdefaultencoding('UTF-8')
 
 weather_url = 'http://t.weather.sojson.com/api/weather/city/'
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
