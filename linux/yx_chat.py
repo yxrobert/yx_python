@@ -22,14 +22,6 @@ movie_list = {
 	}
 err_log = "err.log"
 
-# 济南 101120101 朝阳区 101010300
-dear_list = {
-	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":0, "cons":"Leo"},
-	u"Lifecoach" : {"hour":7, "minite":30, "zone":101010300, "wx":u"yanxie1103", "day_func":0, "cons":"Taurus"},
-	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
-	u'Ada  阿哒哒💭' : {"hour":7, "minite":30, "zone":101021300, "wx":u"doria3159", "day_func":1, "cons":"Leo"},
-}
-
 
 #
 def find_movie(msg, key, idx):
@@ -188,13 +180,13 @@ def start_today_info(name, info):
 	day_func[info["day_func"](name, info)
 
 
-
-# dear_list = {
-# 	# u"单文博" : [6, 30, 101010300, u"swb123aa", 0],
-# 	u"Lifecoach" : [7, 30, 101010300, u"yanxie1103", 0],
-# 	# u'王洋🐳' : [6, 15, 101120101, u"wxid_4070450704312", 0],
-# 	# u'Ada  阿哒哒💭' : [7, 30, 101021300, u"doria3159", 1],
-# }
+# 济南 101120101 朝阳区 101010300
+dear_list = {
+	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":0, "cons":"Leo"},
+	u"Lifecoach" : {"hour":7, "minite":30, "zone":101010300, "wx":u"yanxie1103", "day_func":0, "cons":"Taurus"},
+	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
+	u'Ada  阿哒哒💭' : {"hour":7, "minite":30, "zone":101021300, "wx":u"doria3159", "day_func":1, "cons":"Leo"},
+}
 
 
 # 
