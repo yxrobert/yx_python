@@ -137,13 +137,14 @@ def start_today_info(name, city_code):
 	print(name_uuid)
 	itchat.send(today_msg, toUserName=name_uuid)
 
-	# today_msg = weather.get_dictum_info()
-	# itchat.send(today_msg, toUserName=name_uuid)
+	today_msg = weather.get_dictum_info()
+	itchat.send(today_msg, toUserName=name_uuid)
 
 dear_list = {
 	# u"单文博" : [6, 30, 101010300, u"swb123aa"],
 	u"Lifecoach" : [7, 30, 101010300, u"yanxie1103"],
 	# u'王洋🐳' : [6, 15, 101010300, u"wxid_4070450704312"],
+	u'老妹三' : [7, 30, 101021300, u"doria3159"],
 }
 
 # 
@@ -151,8 +152,8 @@ def run_daily_job():
 	scheduler = BackgroundScheduler()
 	for k in dear_list:
 		arg = (k, dear_list[k][2],)
-		# scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
-		scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=arg)
+		scheduler.add_job(start_today_info, 'interval', seconds=20, args=(k,dear_list[k][2],))
+		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=arg)
 	scheduler.start()
 
 
