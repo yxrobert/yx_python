@@ -180,7 +180,7 @@ def start_today_info(name, info):
 	day_func[info["day_func"](name, info)
 
 
-# 济南 101120101 朝阳区 101010300
+
 # dear_list = {
 # 	# u"单文博" : [6, 30, 101010300, u"swb123aa", 0],
 # 	u"Lifecoach" : [7, 30, 101010300, u"yanxie1103", 0],
@@ -188,6 +188,7 @@ def start_today_info(name, info):
 # 	# u'Ada  阿哒哒💭' : [7, 30, 101021300, u"doria3159", 1],
 # }
 
+# 济南 101120101 朝阳区 101010300
 dear_list = {
 	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":0, "cons":"Leo"},
 	u"Lifecoach" : {"hour":7, "minite":30, "zone":101010300, "wx":u"yanxie1103", "day_func":0, "cons":"Taurus"},
