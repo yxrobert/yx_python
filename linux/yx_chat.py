@@ -78,11 +78,11 @@ def get_day_desc(desc):
 
 
 def get_user_city(msg):
-	return dear_list[msg['User']['NickName']][2]
+	return dear_list[msg['User']['NickName']]["zone"]
 
 
 def get_user_cons(msg):
-	return dear_list[msg['User']['NickName']][2]
+	return dear_list[msg['User']['NickName']]["cons"]
 
 
 def get_weather(msg, key, idx):
@@ -110,10 +110,10 @@ func_list[u"天气怎么样"] = get_weather
 func_list[u"看天气"] = get_weather
 func_list[u"天气好"] = get_weather
 func_list[u"One"] = get_one
-func_list[u"运气怎么样"] = get_one
-func_list[u"运势怎么样"] = get_one
-func_list[u"运气好"] = get_one
-func_list[u"运势好"] = get_one
+func_list[u"运气怎么样"] = get_cons
+func_list[u"运势怎么样"] = get_cons
+func_list[u"运气好"] = get_cons
+func_list[u"运势好"] = get_cons
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
@@ -191,15 +191,15 @@ dear_list = {
 	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa",# "day_func":0, "cons":"Leo"},
 	u"Lifecoach": {"hour": 7, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 0, "cons": "Taurus"},
 	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
-	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
+	u'Ada  阿哒哒💭': {"hour": 0, "minite": 25, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
 }
 
 def run_daily_job():
 	scheduler= BackgroundScheduler()
 	for k in dear_list:
 		arg= (k, dear_list[k])
-		scheduler.add_job(start_today_info, 'interval', seconds=20, args=arg)
-		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k]["hour"], minute=dear_list[k]["minite"], args=arg)
+		# scheduler.add_job(start_today_info, 'interval', seconds=20, args=arg)
+		scheduler.add_job(start_today_info, 'cron', hour=dear_list[k]["hour"], minute=dear_list[k]["minite"], args=arg)
 	scheduler.start()
 
 
