@@ -42,6 +42,21 @@ def get_dictum_info():
 	every_msg = soup_texts.find_all('div', class_='fp-one-cita')[0].find('a').text
 	return every_msg
 
+def constellation(cons):
+	url = 'http://www.xzw.com/fortune/' + cons
+	resp = requests.get(user_url, headers=headers)
+	soup_texts = BeautifulSoup(resp.text, 'lxml')
+
+	# print soup.find_all('dl')
+	html2 = soup_texts.find('div', class_='c_cont')
+	html2 = str(html2)
+	soup_texts = BeautifulSoup(html2)
+	text = '双鱼座明日运势：' + '\n'
+	text = text + '整体运势：' + soup_texts.find_all('span')[0].string + '\n'
+	text = text + '财富运势' + soup_texts.find_all('span')[3].string + '\n'
+	text = text + '健康运势：' + soup_texts.find_all('span')[4].string + '\n'
+	return text
+
 
 def get_weather_info(city_code, idx = 0):
 	
@@ -113,11 +128,12 @@ def get_weather_info(city_code, idx = 0):
 
 
 def main():
-	s = get_weather_info(101010300)
+	s = constellation('taurus')
+	# s = get_weather_info(101010300)
 	# s = get_weather_info(101010300, 1)
 	# s = get_weather_info(101010300, 2)
 	# s = get_weather_info(101010300, 3)
-	# print(s)
+	print(s)
 
 
 
