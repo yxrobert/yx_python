@@ -154,7 +154,7 @@ day_func = {}
 day_func[0] = get_weather_info
 day_func[1] = get_weather_info_ex
 
-def start_today_info(name, city_code, func_idx):
+def start_today_info(name, city_code):
 	day_func[func_idx](name, city_code)
 
 
