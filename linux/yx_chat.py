@@ -96,7 +96,8 @@ def text_reply(msg):
 
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
-	print(msg)
+	print(msg['PYQuanPin'])
+	print(dear_list[msg['PYQuanPin']])
 
 	for key in func_list:
 		idx = msg['Text'].find(key)
@@ -164,7 +165,7 @@ dear_list = {
 	# u"单文博" : [6, 30, 101010300, u"swb123aa", 0],
 	u"Lifecoach" : [7, 30, 101010300, u"yanxie1103", 0],
 	# u'王洋🐳' : [6, 15, 101120101, u"wxid_4070450704312", 0],
-	u'Ada  阿哒哒💭' : [7, 30, 101021300, u"doria3159", 1],
+	# u'Ada  阿哒哒💭' : [7, 30, 101021300, u"doria3159", 1],
 }
 
 # 
