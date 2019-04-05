@@ -178,14 +178,6 @@ def get_weather_info_ex(name, info):
 	itchat.send(today_msg, toUserName=name_uuid)
 
 
-# 101120101/101010300
-dear_list = {
-	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa",# "day_func":0, "cons":"Leo"},
-	u"Lifecoach": {"hour": 7, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 0, "cons": "Taurus"},
-	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101,# "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
-	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
-}
-
 day_func = {}
 day_func[0] = get_weather_info
 day_func[1] = get_weather_info_ex
@@ -193,6 +185,15 @@ day_func[1] = get_weather_info_ex
 
 def start_today_info(name, info):
 	day_func[info["day_func"](name, info)
+
+# 济南 101120101 朝阳区 101010300
+dear_list = {
+	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa",# "day_func":0, "cons":"Leo"},
+	u"Lifecoach": {"hour": 7, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 0, "cons": "Taurus"},
+	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
+	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
+}
+
 def run_daily_job():
 	scheduler= BackgroundScheduler()
 	for k in dear_list:
