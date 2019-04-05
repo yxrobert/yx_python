@@ -72,8 +72,12 @@ def get_day_desc(desc):
 			return len(day_desc) - k - 1
 	return 0
 
+def get_user_city(msg):
+	return dear_list[msg['User']['NickName']]
+
+
 def get_weather(msg, key, idx):
-	city_code = 101010300
+	city_code = get_user_city(msg)
 	d = get_day_desc(msg['Text'])
 	content = weather.get_weather_info(city_code, d)
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
@@ -96,8 +100,8 @@ def text_reply(msg):
 
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
-	print(msg['User'])
-	print(dear_list[msg['User']['NickName']])
+	# print(msg['User'])
+	# print(dear_list[msg['User']['NickName']])
 
 	for key in func_list:
 		idx = msg['Text'].find(key)
