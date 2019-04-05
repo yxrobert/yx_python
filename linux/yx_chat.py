@@ -171,15 +171,6 @@ def get_weather_info_ex(name, info):
 	itchat.send(today_msg, toUserName=name_uuid)
 
 
-
-day_func = {}
-day_func[0] = get_weather_info
-day_func[1] = get_weather_info_ex
-
-def start_today_info(name, info):
-	day_func[info["day_func"](name, info)
-
-
 # 济南 101120101 朝阳区 101010300
 dear_list = {
 	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":0, "cons":"Leo"},
@@ -188,6 +179,12 @@ dear_list = {
 	u'Ada  阿哒哒💭' : {"hour":7, "minite":30, "zone":101021300, "wx":u"doria3159", "day_func":1, "cons":"Leo"},
 }
 
+day_func = {}
+day_func[0] = get_weather_info
+day_func[1] = get_weather_info_ex
+
+def start_today_info(name, info):
+	day_func[info["day_func"](name, info)
 
 # 
 def run_daily_job():
