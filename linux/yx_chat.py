@@ -73,7 +73,7 @@ def get_day_desc(desc):
 	return 0
 
 def get_user_city(msg):
-	return dear_list[msg['User']['NickName']]
+	return dear_list[msg['User']['NickName']][2]
 
 
 def get_weather(msg, key, idx):
