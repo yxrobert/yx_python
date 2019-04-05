@@ -174,7 +174,7 @@ def get_weather_info_ex(name, info):
 	today_msg = weather.get_weather_info(info["zone"])
 	itchat.send(today_msg, toUserName=name_uuid)
 
-	today_msg = weather.get_weather_info(info["zone"])
+	today_msg = weather.constellation(info["cons"])
 	itchat.send(today_msg, toUserName=name_uuid)
 
 
