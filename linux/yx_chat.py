@@ -96,8 +96,8 @@ def text_reply(msg):
 
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
-	print(msg['PYQuanPin'])
-	print(dear_list[msg['PYQuanPin']])
+	print(msg['NickName'])
+	print(dear_list[msg['NickName']])
 
 	for key in func_list:
 		idx = msg['Text'].find(key)
