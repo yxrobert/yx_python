@@ -27,12 +27,14 @@ err_log = "err.log"
 def find_movie(msg, key, idx):
 	name = msg['Text'][idx + len(key):].strip()
 	print(name)
-	content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
+	# content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
+	content = 'Good 稍等一下 %s 马上送达' % name
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
 	content = movie.get_movie(name)
 	if len(content) < 5:
-		content = '没有找到资源哦，没关系，可以带你去电影院去看！'
+		content = '没有找到资源！'
+		# content = '没有找到资源哦，没关系，可以带你去电影院去看！'
 		itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
 		if name in movie_list:
