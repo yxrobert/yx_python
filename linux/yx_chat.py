@@ -75,6 +75,9 @@ def get_day_desc(desc):
 def get_user_city(msg):
 	return dear_list[msg['User']['NickName']][2]
 
+def get_user_cons(msg):
+	return dear_list[msg['User']['NickName']][2]
+
 
 def get_weather(msg, key, idx):
 	city_code = get_user_city(msg)
@@ -86,6 +89,12 @@ def get_one(msg, key, idx):
 	content = weather.get_dictum_info()
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
 
+def get_cons(msg, key, idx):
+	cons = get_user_cons(msg)
+	content = weather.constellation(cons)
+	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
+
+
 # 
 func_list = {}
 func_list[u"我想看电影"] = find_movie
@@ -93,7 +102,10 @@ func_list[u"天气怎么样"] = get_weather
 func_list[u"看天气"] = get_weather
 func_list[u"天气好"] = get_weather
 func_list[u"One"] = get_one
-
+func_list[u"运气怎么样"] = get_one
+func_list[u"运势怎么样"] = get_one
+func_list[u"运气好"] = get_one
+func_list[u"运势好"] = get_one
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
@@ -136,32 +148,36 @@ def get_uuid_by_account(acc):
 		return name_uuid
 
 
-def get_weather_info(name, city_code):
-	print(name)
-	today_msg = weather.get_weather_info(city_code)
+def get_weather_info(name, info):
+	# print(name)
+	today_msg = weather.get_weather_info(info["zone"])
 	name_uuid = get_uuid_by_name(name)
-	print(name_uuid)
+	# print(name_uuid)
 	itchat.send(today_msg, toUserName=name_uuid)
 
 
 
-def get_weather_info_ex(name, city_code):
-	print(name)
-	today_msg = weather.get_weather_info(city_code)
+def get_weather_info_ex(name, info):
+
 	name_uuid = get_uuid_by_name(name)
-	print(name_uuid)
-	itchat.send(today_msg, toUserName=name_uuid)
 
 	today_msg = weather.get_dictum_info()
 	itchat.send(today_msg, toUserName=name_uuid)
+
+	today_msg = weather.get_weather_info(info["zone"])
+	itchat.send(today_msg, toUserName=name_uuid)
+
+	today_msg = weather.get_weather_info(info["zone"])
+	itchat.send(today_msg, toUserName=name_uuid)
+
 
 
 day_func = {}
 day_func[0] = get_weather_info
 day_func[1] = get_weather_info_ex
 
-def start_today_info(name, city_code, func_idx):
-	day_func[func_idx](name, city_code)
+def start_today_info(name, info, func_idx):
+	day_func[func_idx](name, info)
 
 
 # 济南 101120101 朝阳区 101010300
@@ -172,13 +188,20 @@ dear_list = {
 	# u'Ada  阿哒哒💭' : [7, 30, 101021300, u"doria3159", 1],
 }
 
+dear_list = {
+	# u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":0, "cons":"Leo"},
+	u"Lifecoach" : {"hour":7, "minite":30, "zone":101010300, "wx":u"yanxie1103", "day_func":0, "cons":"Taurus"},
+	# u'王洋🐳' : {"hour":6, "minite":15, "zone":101120101, "wx":u"wxid_4070450704312", "day_func":0, "cons":"Leo"},
+	u'Ada  阿哒哒💭' : {"hour":7, "minite":30, "zone":101021300, "wx":u"doria3159", "day_func":1, "cons":"Leo"},
+}
+
 # 
 def run_daily_job():
 	scheduler = BackgroundScheduler()
 	for k in dear_list:
-		arg = (k, dear_list[k][2], dear_list[k][4])
+		arg = (k, dear_list[k])
 		scheduler.add_job(start_today_info, 'interval', seconds=20, args=arg)
-		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k][0], minute=dear_list[k][1], args=arg)
+		# scheduler.add_job(start_today_info, 'cron', hour=dear_list[k]["hour"], minute=dear_list[k]["minite"], args=arg)
 	scheduler.start()
 
 

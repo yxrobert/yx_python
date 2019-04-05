@@ -7,8 +7,8 @@ import requests
 import json, sys
 from bs4 import BeautifulSoup
 
-# reload(sys)
-# sys.setdefaultencoding('UTF-8')
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 
 weather_url = 'http://t.weather.sojson.com/api/weather/city/'
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
@@ -44,17 +44,18 @@ def get_dictum_info():
 
 def constellation(cons):
 	url = 'http://www.xzw.com/fortune/' + cons
-	resp = requests.get(user_url, headers=headers)
+	resp = requests.get(url, headers=headers)
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	# print soup.find_all('dl')
 	html2 = soup_texts.find('div', class_='c_cont')
 	html2 = str(html2)
 	soup_texts = BeautifulSoup(html2)
-	text = '双鱼座明日运势：' + '\n'
-	text = text + '整体运势：' + soup_texts.find_all('span')[0].string + '\n'
-	text = text + '财富运势' + soup_texts.find_all('span')[3].string + '\n'
-	text = text + '健康运势：' + soup_texts.find_all('span')[4].string + '\n'
+	text = cons + '今日运势：' + '\n'
+	text = text + '整体运势：' + soup_texts.find_all('span')[0].string + '\n\n'
+	text = text + '事业运势：' + soup_texts.find_all('span')[2].string + '\n\n'
+	text = text + '财富运势：' + soup_texts.find_all('span')[3].string + '\n\n'
+	text = text + '健康运势：' + soup_texts.find_all('span')[4].string + '\n\n'
 	return text
 
 
