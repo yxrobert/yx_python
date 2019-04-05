@@ -184,7 +184,7 @@ day_func[1] = get_weather_info_ex
 
 
 def start_today_info(name, info):
-	day_func[info["day_func"](name, info)
+	day_func[info["day_func"]](name, info)
 
 # 济南 101120101 朝阳区 101010300
 dear_list = {
