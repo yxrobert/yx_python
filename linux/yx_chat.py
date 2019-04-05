@@ -78,6 +78,7 @@ def get_user_city(msg):
 
 def get_weather(msg, key, idx):
 	city_code = get_user_city(msg)
+	print(city_code)
 	d = get_day_desc(msg['Text'])
 	content = weather.get_weather_info(city_code, d)
 	itchat.send('%s: %s'%(msg['Type'], content), msg['FromUserName'])
