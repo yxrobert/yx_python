@@ -96,7 +96,7 @@ def text_reply(msg):
 
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
-	print(msg['FromUserName'])
+	print(msg)
 
 	for key in func_list:
 		idx = msg['Text'].find(key)
