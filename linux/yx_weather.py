@@ -51,7 +51,7 @@ def get_gua(x=-1, y=-1):
 	for i in soup_texts.find_all('meta'):
 		if i.get('name') == 'description':
 			print(i.get('content'))
-		else if i.get('name') == 'keywords':
+		elif i.get('name') == 'keywords':
 			print(i.get('content'))
 	# s += soup_texts.find(name='description')['content']
 	# print(soup_texts.find_all('meta', name=))
