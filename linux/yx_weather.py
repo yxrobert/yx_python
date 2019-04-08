@@ -36,7 +36,7 @@ day_desc = [
 ]
 
 def get_gua(x=-1, y=-1):
-	idx = YI.get_yi_idx(x, y) + 1
+	idx = str(YI.get_yi_idx(x, y) + 1)
 	idx.zfill(2)
 	gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" % idx
 	resp = requests.get(gua_url, headers=headers)
