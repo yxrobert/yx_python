@@ -56,7 +56,7 @@ def find_movie(msg, key, idx, isGroupChat=False):
 
 		return False
 	else:
-		itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+		itchat.send('%s: %s' % (msg['Type'], content),reciver)
 
 	return True
 
@@ -163,7 +163,6 @@ def reply_msg(msg):
 			idx = msg['Text'].find(key)
 			if idx == -1:
 				continue
-			itchat.send(msg['Text'], msg['ToUserName'])
 			ret = group_func_list[key](msg, key, idx, True)
 
 
