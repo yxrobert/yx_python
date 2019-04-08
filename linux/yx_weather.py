@@ -8,7 +8,7 @@ import json, sys
 from bs4 import BeautifulSoup
 # import yx_yi as YI
 
-# reload(sys)
+reload(sys)
 # sys.setdefaultencoding('UTF-8')
 
 weather_url = 'http://t.weather.sojson.com/api/weather/city/'
