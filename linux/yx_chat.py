@@ -27,19 +27,18 @@ err_log = "err.log"
 
 
 #
-def find_movie(msg, key, idx, isGroupChat=False):
-	reciver = msg['FromUserName'] if not isGroupChat else msg['ToUserName']
+def find_movie(msg, key, idx):
 	name = msg['Text'][idx + len(key):].strip()
 	print(name)
 	# content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
 	content = 'Good 稍等一下 %s 马上送达' % name
-	itchat.send('%s: %s' % (msg['Type'], content), reciver)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 	content = movie.get_movie(name)
 	if len(content) < 5:
 		content = '没有找到资源！'
 		# content = '没有找到资源哦，没关系，可以带你去电影院去看！'
-		itchat.send('%s: %s' % (msg['Type'], content), reciver)
+		itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 		if name in movie_list:
 			time.sleep(10)
@@ -56,7 +55,7 @@ def find_movie(msg, key, idx, isGroupChat=False):
 
 		return False
 	else:
-		itchat.send('%s: %s' % (msg['Type'], content),reciver)
+		itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 	return True
 
@@ -94,29 +93,27 @@ def get_weather(msg, key, idx):
 	city_code = get_user_city(msg)
 	d = get_day_desc(msg['Text'])
 	content = weather.get_weather_info(city_code, d)
-	itchat.send(content, msg['FromUserName'])
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 
-def get_one(msg, key, idx, isGroupChat=False):
-	reciver = msg['FromUserName'] if not isGroupChat else msg['ToUserName']
+def get_one(msg, key, idx):
 	content = weather.get_dictum_info()
-	itchat.send(content, reciver)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 
 def get_cons(msg, key, idx):
 	cons = get_user_cons(msg)
 	content = weather.constellation(cons)
-	itchat.send(content, msg['FromUserName'])
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
-def get_gua(msg, key, idx, isGroupChat=False):
-	reciver = msg['FromUserName'] if not isGroupChat else msg['ToUserName']
+def get_gua(msg, key, idx):
 	time.sleep(5)
 	content = u"无事不起卦!"
-	itchat.send(content, reciver)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 	time.sleep(9)
 	x, y = get_xy(msg['Text'])
 	content = weather.get_gua(x, y)
-	itchat.send(content, reciver)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 #
 func_list = {}
@@ -134,37 +131,13 @@ func_list[u"占卜"] = get_gua
 func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
-group_func_list = {}
-group_func_list[u"我想看电影"] = find_movie
-group_func_list[u"One"] = get_one
-group_func_list[u"起卦"] = get_gua
-group_func_list[u"占卜"] = get_gua
-group_func_list[u"算卦"] = get_gua
-group_func_list[u"算命"] = get_gua
-
-
-dear_group_list = [
-	'@@c03ac88315d572c04ae4ae1ee1db45304ea3b2eff97d9e3d6dc8f133e725f4ae', 
-	'@@af52589f6504ff19874c24b5ed37e87e1a7a0a7f7210d24d64249a425ee53869',
-]
 
 def notice_me(msg):
 	user_info = itchat.search_friends(name='Lifecoach')
 	if len(user_info) > 0:
 		user_name = user_info[0]['UserName']
 		itchat.send_msg(msg, user_name)
-
-
-@itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
-def reply_msg(msg):
-	# print(msg['ToUserName'])
-	if msg['ToUserName'] in dear_group_list:
-		for key in group_func_list:
-			idx = msg['Text'].find(key)
-			if idx == -1:
-				continue
-			ret = group_func_list[key](msg, key, idx, True)
-
+		
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
