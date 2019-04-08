@@ -97,7 +97,7 @@ def get_weather(msg, key, idx):
 
 
 def get_one(msg, key, idx, isGroupChat=False):
-	reciver = if not isGroupChat: msg['FromUserName'] else : msg['ToUserName']
+	reciver = if not isGroupChat msg['FromUserName'] else msg['ToUserName']
 	content = weather.get_dictum_info()
 	itchat.send(content, reciver)
 
