@@ -59,11 +59,11 @@ def get_gua(x=-1, y=-1):
 	# s += title + '\n'
 	# s += con + '\n'
 
-	for i in soup_texts.find_all('span', class='f16 pink'):
+	for i in soup_texts.find_all('span',class='f16 pink'):
 		print(i)
 		print(i.string)
 
-	for i in soup_texts.find_all('p', class='f14 l150'):
+	for i in soup_texts.find_all('p',class='f14 l150'):
 		print(i)
 		print(i.string)
 
