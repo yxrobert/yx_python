@@ -120,7 +120,7 @@ def get_yao(val):
 
 def get_hour():
 	localtime = time.localtime(time.time())
-	return localtime.tm_hour / 2 + 1
+	return int(localtime.tm_hour / 2) + 1
 
 def print_yin():
 	pass
