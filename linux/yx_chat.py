@@ -131,6 +131,15 @@ func_list[u"占卜"] = get_gua
 func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
+group_func_list = {}
+func_list[u"我想看电影"] = find_movie
+func_list[u"One"] = get_one
+func_list[u"起卦"] = get_gua
+func_list[u"占卜"] = get_gua
+func_list[u"算卦"] = get_gua
+func_list[u"算命"] = get_gua
+
+
 dear_group_list = [
 	'@@c03ac88315d572c04ae4ae1ee1db45304ea3b2eff97d9e3d6dc8f133e725f4ae', 
 	'@@af52589f6504ff19874c24b5ed37e87e1a7a0a7f7210d24d64249a425ee53869',
@@ -146,11 +155,11 @@ def notice_me(msg):
 @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def reply_msg(msg):
 	if msg['ToUserName'] in dear_group_list:
-		for key in func_list:
+		for key in group_func_list:
 			idx = msg['Text'].find(key)
 			if idx == -1:
 				continue
-			ret = func_list[key](msg, key, idx)
+			ret = group_func_list[key](msg, key, idx)
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
