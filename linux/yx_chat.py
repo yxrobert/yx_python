@@ -107,7 +107,7 @@ def get_cons(msg, key, idx):
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 def get_gua(msg, key, idx):
-	time.sleep(3)
+	time.sleep(9)
 	content = u"无事不起卦!"
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 	time.sleep(5)
