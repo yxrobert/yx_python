@@ -47,17 +47,21 @@ def get_gua(x=-1, y=-1):
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	s = ""
-	title = ""
-	con = ""
-	for i in soup_texts.find_all('meta'):
-		if i.get('name') == 'description':
-			con = i.get('content')
-		elif i.get('name') == 'keywords':
-			title = i.get('content')
-			idx = title.find('-')
-			title = title[:idx]
-	s += title + '\n'
-	s += con
+	# title = ""
+	# con = ""
+	# for i in soup_texts.find_all('meta'):
+	# 	if i.get('name') == 'description':
+	# 		con = i.get('content')
+	# 	elif i.get('name') == 'keywords':
+	# 		title = i.get('content')
+	# 		idx = title.find('-')
+	# 		title = title[:idx]
+	# s += title + '\n'
+	# s += con + '\n'
+
+	for i in soup_texts.find_all('p'):
+
+
 	# s += soup_texts.find(name='description')['content']
 	# print(soup_texts.find_all('meta', name=))
 	return s
