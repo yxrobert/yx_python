@@ -93,27 +93,27 @@ def get_weather(msg, key, idx):
 	city_code = get_user_city(msg)
 	d = get_day_desc(msg['Text'])
 	content = weather.get_weather_info(city_code, d)
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send(content, msg['FromUserName'])
 
 
 def get_one(msg, key, idx):
 	content = weather.get_dictum_info()
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send(content, msg['FromUserName'])
 
 
 def get_cons(msg, key, idx):
 	cons = get_user_cons(msg)
 	content = weather.constellation(cons)
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send(content, msg['FromUserName'])
 
 def get_gua(msg, key, idx):
 	time.sleep(5)
 	content = u"无事不起卦!"
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send(content, msg['FromUserName'])
 	time.sleep(9)
 	x, y = get_xy(msg['Text'])
 	content = weather.get_gua(x, y)
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send(content, msg['FromUserName'])
 
 #
 func_list = {}
@@ -161,6 +161,7 @@ def reply_msg(msg):
 			if idx == -1:
 				continue
 			print(msg['Text'])
+			itchat.send(msg['Text'], msg['FromUserName'])
 			ret = group_func_list[key](msg, key, idx)
 
 
