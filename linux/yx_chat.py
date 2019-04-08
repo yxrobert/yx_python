@@ -163,7 +163,7 @@ def reply_msg(msg):
 				continue
 			print(msg['Text'])
 			itchat.send(msg['Text'], msg['ToUserName'])
-			ret = group_func_list[key](msg, key, idx, isGroupChat)
+			ret = group_func_list[key](msg, key, idx, True)
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
