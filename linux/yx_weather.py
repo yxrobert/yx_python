@@ -6,6 +6,7 @@ import time
 import requests
 import json, sys
 from bs4 import BeautifulSoup
+import yx_yi as YI
 
 # reload(sys)
 # sys.setdefaultencoding('UTF-8')
@@ -34,6 +35,18 @@ day_desc = [
 	u"大大大大后天",
 ]
 
+def get_gua(x=-1, y=-1):
+	idx = YI.get_yi_idx(x, y) + 1
+	idx.zfill(2)
+	gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" & idx
+	resp = requests.get(gua_url, headers=headers)
+	soup_texts = BeautifulSoup(resp.text, 'lxml')
+
+	s = ""
+	s += soup_texts.find('met', name='description').content
+	return s
+
+
 def get_dictum_info():
 	user_url = 'http://wufazhuce.com/'
 	resp = requests.get(user_url, headers=headers)
@@ -41,6 +54,7 @@ def get_dictum_info():
 	# 『one -个』 中的每日一句
 	every_msg = soup_texts.find_all('div', class_='fp-one-cita')[0].find('a').text
 	return every_msg
+
 
 def constellation(cons):
 	url = 'http://www.xzw.com/fortune/' + cons
@@ -129,7 +143,8 @@ def get_weather_info(city_code, idx = 0):
 
 
 def main():
-	s = constellation('taurus')
+	s = get_gua()
+	# s = constellation('taurus')
 	# s = get_weather_info(101010300)
 	# s = get_weather_info(101010300, 1)
 	# s = get_weather_info(101010300, 2)
