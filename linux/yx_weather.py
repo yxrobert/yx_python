@@ -47,7 +47,8 @@ def get_gua(x=-1, y=-1):
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	s = ""
-	print(soup_texts.find_all('meta')[0].content)
+	for i in soup_texts.find_all('meta'):
+		print(i.get('content'))
 	# s += soup_texts.find(name='description')['content']
 	return s
 
