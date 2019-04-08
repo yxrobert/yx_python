@@ -28,17 +28,18 @@ err_log = "err.log"
 
 #
 def find_movie(msg, key, idx, isGroupChat=False):
+	reciver = msg['FromUserName'] if not isGroupChat else msg['ToUserName']
 	name = msg['Text'][idx + len(key):].strip()
 	print(name)
 	# content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
 	content = 'Good 稍等一下 %s 马上送达' % name
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	itchat.send('%s: %s' % (msg['Type'], content), reciver)
 
 	content = movie.get_movie(name)
 	if len(content) < 5:
 		content = '没有找到资源！'
 		# content = '没有找到资源哦，没关系，可以带你去电影院去看！'
-		itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+		itchat.send('%s: %s' % (msg['Type'], content), reciver)
 
 		if name in movie_list:
 			time.sleep(10)
@@ -108,13 +109,14 @@ def get_cons(msg, key, idx):
 	itchat.send(content, msg['FromUserName'])
 
 def get_gua(msg, key, idx, isGroupChat=False):
+	reciver = msg['FromUserName'] if not isGroupChat else msg['ToUserName']
 	time.sleep(5)
 	content = u"无事不起卦!"
-	itchat.send(content, msg['FromUserName'])
+	itchat.send(content, reciver)
 	time.sleep(9)
 	x, y = get_xy(msg['Text'])
 	content = weather.get_gua(x, y)
-	itchat.send(content, msg['FromUserName'])
+	itchat.send(content, reciver)
 
 #
 func_list = {}
@@ -161,7 +163,6 @@ def reply_msg(msg):
 			idx = msg['Text'].find(key)
 			if idx == -1:
 				continue
-			print(msg['Text'])
 			itchat.send(msg['Text'], msg['ToUserName'])
 			ret = group_func_list[key](msg, key, idx, True)
 
