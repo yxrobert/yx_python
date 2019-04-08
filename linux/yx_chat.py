@@ -154,7 +154,9 @@ def notice_me(msg):
 
 @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def reply_msg(msg):
+	print(msg['ToUserName'])
 	if msg['ToUserName'] in dear_group_list:
+		print(msg)
 		for key in group_func_list:
 			idx = msg['Text'].find(key)
 			if idx == -1:
