@@ -27,7 +27,7 @@ err_log = "err.log"
 
 
 #
-def find_movie(msg, key, idx):
+def find_movie(msg, key, idx, isGroupChat=False):
 	name = msg['Text'][idx + len(key):].strip()
 	print(name)
 	# content = 'Good 稍等一下 亲爱的 %s 马上送达' % name
@@ -96,9 +96,10 @@ def get_weather(msg, key, idx):
 	itchat.send(content, msg['FromUserName'])
 
 
-def get_one(msg, key, idx):
+def get_one(msg, key, idx, isGroupChat=False):
+	reciver = if not isGroupChat: msg['FromUserName'] else : msg['ToUserName']
 	content = weather.get_dictum_info()
-	itchat.send(content, msg['FromUserName'])
+	itchat.send(content, reciver)
 
 
 def get_cons(msg, key, idx):
@@ -106,7 +107,7 @@ def get_cons(msg, key, idx):
 	content = weather.constellation(cons)
 	itchat.send(content, msg['FromUserName'])
 
-def get_gua(msg, key, idx):
+def get_gua(msg, key, idx, isGroupChat=False):
 	time.sleep(5)
 	content = u"无事不起卦!"
 	itchat.send(content, msg['FromUserName'])
@@ -162,7 +163,7 @@ def reply_msg(msg):
 				continue
 			print(msg['Text'])
 			itchat.send(msg['Text'], msg['ToUserName'])
-			ret = group_func_list[key](msg, key, idx)
+			ret = group_func_list[key](msg, key, idx, isGroupChat)
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
