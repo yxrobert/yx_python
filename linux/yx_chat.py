@@ -132,12 +132,12 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
 group_func_list = {}
-func_list[u"我想看电影"] = find_movie
-func_list[u"One"] = get_one
-func_list[u"起卦"] = get_gua
-func_list[u"占卜"] = get_gua
-func_list[u"算卦"] = get_gua
-func_list[u"算命"] = get_gua
+group_func_list[u"我想看电影"] = find_movie
+group_func_list[u"One"] = get_one
+group_func_list[u"起卦"] = get_gua
+group_func_list[u"占卜"] = get_gua
+group_func_list[u"算卦"] = get_gua
+group_func_list[u"算命"] = get_gua
 
 
 dear_group_list = [
