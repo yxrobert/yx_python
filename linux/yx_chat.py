@@ -103,6 +103,8 @@ def get_cons(msg, key, idx):
 	content = weather.constellation(cons)
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
+def get_gua(msg, key, idx):
+	pass
 
 #
 func_list = {}
@@ -115,6 +117,10 @@ func_list[u"运气怎么样"] = get_cons
 func_list[u"运势怎么样"] = get_cons
 func_list[u"运气好"] = get_cons
 func_list[u"运势好"] = get_cons
+func_list[u"起卦"] = get_gua
+func_list[u"占卜"] = get_gua
+func_list[u"算卦"] = get_gua
+func_list[u"算命"] = get_gua
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])

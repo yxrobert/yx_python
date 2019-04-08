@@ -65,8 +65,6 @@ def get_gua(x=-1, y=-1):
 	for i in soup_texts.find_all('p', class_='f14 l150'):
 		s += i.get_text() + '\n'
 
-	# s += soup_texts.find(name='description')['content']
-	# print(soup_texts.find_all('meta', name=))
 	return s
 
 
