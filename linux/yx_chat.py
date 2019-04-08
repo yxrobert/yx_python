@@ -107,10 +107,10 @@ def get_cons(msg, key, idx):
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 def get_gua(msg, key, idx):
-	time.sleep(9)
+	time.sleep(5)
 	content = u"无事不起卦!"
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
-	time.sleep(5)
+	time.sleep(9)
 	x, y = get_xy(msg['Text'])
 	content = weather.get_gua(x, y)
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
