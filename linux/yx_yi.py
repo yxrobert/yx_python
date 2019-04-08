@@ -153,7 +153,7 @@ class YI():
 
 	def BianGua(self, data, gua):
 		idx = YAO_NUM - data[bian]
-		hf = YAO_NUM / 2
+		hf = int(YAO_NUM / 2)
 		if idx < hf:
 			gua[shang][idx] = not(gua[shang][idx])
 		else:
