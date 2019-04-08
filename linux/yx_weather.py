@@ -6,7 +6,7 @@ import time
 import requests
 import json, sys
 from bs4 import BeautifulSoup
-import yx_yi as YI
+# import yx_yi as YI
 
 # reload(sys)
 # sys.setdefaultencoding('UTF-8')
@@ -36,15 +36,15 @@ day_desc = [
 ]
 
 def get_gua(x=-1, y=-1):
-	idx = YI.get_yi_idx(x, y) + 1
-	idx.zfill(2)
-	gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" % idx
-	resp = requests.get(gua_url, headers=headers)
-	print(resp.text)
+	# idx = YI.get_yi_idx(x, y) + 1
+	# idx.zfill(2)
+	# gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" % idx
+	# resp = requests.get(gua_url, headers=headers)
+	# print(resp.text)
 	# soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	s = ""
-	s += soup_texts.find('met', name='description').content
+	# s += soup_texts.find('met', name='description').content
 	return s
 
 
