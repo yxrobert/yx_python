@@ -40,6 +40,8 @@ def get_gua(x=-1, y=-1):
 	idx.zfill(2)
 	gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" % idx
 	resp = requests.get(gua_url, headers=headers)
+	resp.encoding = 'gbk'
+	print()
 	print(resp.text)
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
