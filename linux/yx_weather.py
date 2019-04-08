@@ -57,10 +57,10 @@ def get_gua(x=-1, y=-1):
 			idx = title.find('-')
 			title = title[:idx]
 	s += title + '\n'
-	s += con + '\n'
+	s += con + '\n\n'
 
 	for i in soup_texts.find_all('span', class_='f16 pink'):
-		s += i.get_text()
+		s += i.get_text() + '\n'
 
 	for i in soup_texts.find_all('p', class_='f14 l150'):
 		s += i.get_text()
