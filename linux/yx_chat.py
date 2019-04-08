@@ -156,11 +156,11 @@ def notice_me(msg):
 def reply_msg(msg):
 	# print(msg['ToUserName'])
 	if msg['ToUserName'] in dear_group_list:
-		print(msg['Text'])
 		for key in group_func_list:
 			idx = msg['Text'].find(key)
 			if idx == -1:
 				continue
+			print(msg['Text'])
 			ret = group_func_list[key](msg, key, idx)
 
 
