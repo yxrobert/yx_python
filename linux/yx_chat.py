@@ -77,6 +77,9 @@ def get_day_desc(desc):
 			return len(day_desc) - k - 1
 	return 0
 
+def get_xy(msg):
+	l = msg.split(' ')
+	return int(l[1]), int(l[2])
 
 def get_user_city(msg):
 	return dear_list[msg['User']['NickName']]["zone"]
@@ -104,7 +107,11 @@ def get_cons(msg, key, idx):
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 def get_gua(msg, key, idx):
-	pass
+	content = u"无事不起卦"
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	time.sleep(3)
+	x, y = get_xy(msg['Text'])
+	content = weather.get_gua(x, y)
 
 #
 func_list = {}
