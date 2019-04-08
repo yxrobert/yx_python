@@ -161,7 +161,7 @@ def reply_msg(msg):
 			if idx == -1:
 				continue
 			print(msg['Text'])
-			itchat.send(msg['Text'], msg['FromUserName'])
+			itchat.send(msg['Text'], msg['ToUserName'])
 			ret = group_func_list[key](msg, key, idx)
 
 
