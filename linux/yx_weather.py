@@ -43,10 +43,11 @@ def get_gua(x=-1, y=-1):
 	# resp.encoding = 'gbk'
 	# print(resp.encoding)
 	# print(resp.text)
-	soup_texts = BeautifulSoup(resp.text, 'lxml').prettify()
+	# .prettify()
+	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	s = ""
-	print(soup_texts.find_all('meta', name="description"))
+	print(soup_texts.find_all('meta').prettify())
 	# s += soup_texts.find(name='description')['content']
 	return s
 
