@@ -112,6 +112,7 @@ def get_gua(msg, key, idx):
 	time.sleep(3)
 	x, y = get_xy(msg['Text'])
 	content = weather.get_gua(x, y)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 #
 func_list = {}
