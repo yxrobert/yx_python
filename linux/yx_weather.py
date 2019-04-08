@@ -42,7 +42,7 @@ def get_gua(x=-1, y=-1):
 	resp = requests.get(gua_url, headers=headers)
 	# resp.encoding = 'gbk'
 	print(resp.encoding)
-	print(resp.text)
+	# print(resp.text)
 	soup_texts = BeautifulSoup(resp.text, 'lxml')
 
 	s = ""
