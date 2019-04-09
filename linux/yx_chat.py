@@ -132,6 +132,13 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
 
+def notice_me(msg):
+	user_info = itchat.search_friends(name='Lifecoach')
+	if len(user_info) > 0:
+		user_name = user_info[0]['UserName']
+		itchat.send_msg(msg, user_name)
+		
+
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
 
