@@ -220,7 +220,7 @@ dear_list = {
 	u"Lifecoach": {"hour": 7, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 0, "cons": "Taurus"},
 	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo"},
 	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
-	u'孟小毛': {"hour": 9, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius"},
+	u'孟小毛': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius"},
 }
 
 def run_daily_job():
