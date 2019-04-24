@@ -88,7 +88,6 @@ def get_user_city(msg):
 		return 101010300
 	
 
-
 def get_user_cons(msg):
 	return dear_list[msg['User']['NickName']]["cons"]
 
