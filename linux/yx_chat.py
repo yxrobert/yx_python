@@ -220,10 +220,10 @@ def start_today_info(name, info):
 # 济南 101120101 朝阳区 101010300
 dear_list = {
 	u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":2, "cons":"Leo"},
-	u"Lifecoach": {"hour": 8, "minite": 30, "zone": 101010300, "wx": u"yanxie1103", "day_func": 1, "cons": "Taurus"},
+	u"Lifecoach": {"hour": 8, "minite": 45, "zone": 101010300, "wx": u"yanxie1103", "day_func": 1, "cons": "Taurus"},
 	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo"},
-	u'Ada  阿哒哒💭': {"hour": 8, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
-	u'孟小毛': {"hour": 8, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius"},
+	u'Ada  阿哒哒💭': {"hour": 8, "minite": 45, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
+	u'孟小毛': {"hour": 8, "minite": 45, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius"},
 }
 
 def run_daily_job():
