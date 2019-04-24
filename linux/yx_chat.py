@@ -84,7 +84,7 @@ def get_xy(msg):
 def get_user_city(msg):
 	try:
 		return dear_list[msg['User']['NickName']]["zone"]
-	except Exception, e:
+	except Exception:
 		return 101010300
 	
 
