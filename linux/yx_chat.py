@@ -82,7 +82,11 @@ def get_xy(msg):
 	return int(l[1]), int(l[2])
 
 def get_user_city(msg):
-	return dear_list[msg['User']['NickName']]["zone"]
+	try:
+		return dear_list[msg['User']['NickName']]["zone"]
+	except Exception, e:
+		return 101010300
+	
 
 
 def get_user_cons(msg):
