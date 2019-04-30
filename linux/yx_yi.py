@@ -170,7 +170,7 @@ class YI():
 		print(xia_idx)
 		idx = GUA_64.index([shang_idx, xia_idx])
 		print(idx)
-		return(idx)
+		return idx
 
 	def go(self):
 		# 
