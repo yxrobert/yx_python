@@ -85,6 +85,7 @@ def constellation(cons):
 	soup_texts = BeautifulSoup(html2)
 	text = cons + '今日运势：' + '\n'
 	text = text + '整体运势：' + soup_texts.find_all('span')[0].string + '\n\n'
+	text = text + '爱情运势：' + soup_texts.find_all('span')[1].string + '\n\n'
 	text = text + '事业运势：' + soup_texts.find_all('span')[2].string + '\n\n'
 	text = text + '财富运势：' + soup_texts.find_all('span')[3].string + '\n\n'
 	text = text + '健康运势：' + soup_texts.find_all('span')[4].string + '\n\n'
