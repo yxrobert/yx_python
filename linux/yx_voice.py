@@ -8,16 +8,6 @@ APP_ID = '16328862'
 API_KEY = 'SiGGvPDQS0kwtAqbFq3pwYEh'
 SECRET_KEY = 'c8PGZ9mGoAb67Cg4ofnp1tB6CZbZnrMH'
 
-voice = yXVoice()
-
-# 读取文件
-def get_file_content(filePath):
-    with open(filePath, 'rb') as fp:
-        return fp.read()
-
-def translate(file_path):
-	voice.asr(file_path)
-
 
 class yXVoice():
 	def __init__(self):
@@ -34,6 +24,18 @@ class yXVoice():
 			return msg.get("result")
 		else:
 			return ""
+
+
+voice = yXVoice()
+
+# 读取文件
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
+
+def translate(file_path):
+	voice.asr(file_path)
+
 
 def main():
 	pass

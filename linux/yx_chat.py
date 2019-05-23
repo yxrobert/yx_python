@@ -148,7 +148,6 @@ def voice_reply(msg):
 	msg.download(msg.fileName)
 	trans_msg = voice.translate(msg.fileName)
 	print(trans_msg)
-	# print(msg.fileName)
 	notice_me(trans_msg)
 
 
