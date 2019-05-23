@@ -136,11 +136,18 @@ func_list[u"算命"] = get_gua
 
 
 def notice_me(msg):
-	user_info = itchat.search_friends(name='Lifecoach')
+	user_info = itchat.search_friends(name='陈鹏')
 	if len(user_info) > 0:
 		user_name = user_info[0]['UserName']
 		itchat.send_msg(msg, user_name)
 		
+
+@itchat.msg_register([RECORDING])
+def voice_reply(msg):
+	msg.download(msg.fileName)
+	print(msg.fileName)
+	notice_me(msg.fileName)
+
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
