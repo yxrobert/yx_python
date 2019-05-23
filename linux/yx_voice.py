@@ -19,6 +19,8 @@ class yXVoice():
 		    'dev_pid': 1536,
 		})
 
+		print(msg)
+		print(msg.get("err_no"))
 		if msg.get("err_no"):
 			print(msg.get("result"))
 			return msg.get("result")
