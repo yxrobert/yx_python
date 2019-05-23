@@ -10,6 +10,7 @@ import time
 import threading
 # from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
+import yx_voice as voice
 
 reload(sys)
 
@@ -145,8 +146,10 @@ def notice_me(msg):
 @itchat.msg_register(['Recording'])
 def voice_reply(msg):
 	msg.download(msg.fileName)
-	print(msg.fileName)
-	notice_me(msg.fileName)
+	trans_msg = voice.translate(msg.fileName)
+	print(trans_msg)
+	# print(msg.fileName)
+	notice_me(trans_msg)
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
