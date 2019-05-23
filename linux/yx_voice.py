@@ -11,7 +11,7 @@ SECRET_KEY = 'c8PGZ9mGoAb67Cg4ofnp1tB6CZbZnrMH'
 
 class yXVoice():
 	def __init__(self):
-		self.client = AipNlp(APP_ID, API_KEY, SECRET_KEY)
+		self.client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
 
 	def asr(self, file_path):
 		# 识别本地文件
