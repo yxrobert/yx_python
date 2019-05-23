@@ -142,7 +142,7 @@ def notice_me(msg):
 		itchat.send_msg(msg, user_name)
 		
 
-@itchat.msg_register([RECORDING])
+@itchat.msg_register(['Recording'])
 def voice_reply(msg):
 	msg.download(msg.fileName)
 	print(msg.fileName)
