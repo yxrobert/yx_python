@@ -57,7 +57,7 @@ def translate(file_path):
 
 
 def main():
-	pass
+	translate('v.mp3')
 
 
 if __name__ == "__main__":
