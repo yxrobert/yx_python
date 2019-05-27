@@ -24,7 +24,7 @@ class yXVoice():
 		mp3_version = AudioSegment.from_mp3(from_path)
 		mono = mp3_version.set_frame_rate(frame_rate).set_channels(1)
 		mono.export(save_path, format='wav', codec='pcm_s16le')
-		retrun save_path
+		return save_path
 
 
 	def asr(self, file_path):
