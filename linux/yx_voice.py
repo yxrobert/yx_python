@@ -29,7 +29,7 @@ class yXVoice():
 
 	def asr(self, file_path):
 		# 
-		file_path = convert_fmt(file_path)
+		file_path = self.convert_fmt(file_path)
 		
 		# 识别本地文件
 		msg = self.client.asr(get_file_content(file_path), 'pcm', 16000, {
