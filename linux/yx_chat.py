@@ -163,6 +163,7 @@ def notice_me(msg):
 def voice_reply(msg):
 	msg.download(msg.fileName)
 	trans_msg = voice.translate(msg.fileName)
+	msg['Text'] = trans_msg
 	do_respons(trans_msg, msg)
 	# print(trans_msg)
 	# notice_me(trans_msg)
