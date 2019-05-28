@@ -21,7 +21,7 @@ class yXVoice():
 
 	def convert_fmt(self, file_path, frame_rate=16000):
 		save_path = file_path.replace(".mp3", ".pcm")
-		mp3_version = AudioSegment.from_mp3(from_path)
+		mp3_version = AudioSegment.from_mp3(file_path)
 		mono = mp3_version.set_frame_rate(frame_rate).set_channels(1)
 		mono.export(save_path, format='wav', codec='pcm_s16le')
 		return save_path
