@@ -96,7 +96,8 @@ def get_weather_info(city_code, idx = 0):
 	
 	url = weather_url + str(city_code)
 	resp = requests.get(url, headers=headers)
-
+	print(url)
+	print(resp)
 	if idx >= len(day_desc):
 		idx = 0
 
