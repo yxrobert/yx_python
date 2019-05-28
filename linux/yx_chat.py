@@ -96,7 +96,6 @@ def get_user_cons(msg):
 
 def get_weather(msg, key, idx):
 	city_code = get_user_city(msg)
-	print(msg['Text'])
 	d = get_day_desc(msg['Text'])
 	content = weather.get_weather_info(city_code, d)
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
@@ -161,6 +160,7 @@ def notice_me(msg):
 @itchat.msg_register(['Recording'])
 def voice_reply(msg):
 	msg.download(msg.fileName)
+	print(msg)
 	trans_msg = voice.translate(msg.fileName)
 	do_respons(trans_msg, msg)
 	# print(trans_msg)
