@@ -78,7 +78,7 @@ def get_day_desc(desc):
 			if desc.find(v) != -1:
 				return len(day_desc) - k - 1
 	except Exception:
-		pass
+		return 0
 	return 0
 
 def get_xy(msg):
