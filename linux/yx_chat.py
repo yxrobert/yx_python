@@ -136,6 +136,19 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
 
+def do_respons(request_word):
+	for key in func_list:
+	idx = request_word.find(key)
+	if idx == -1:
+		continue
+	ret = func_list[key](msg, key, idx)
+
+	if ret != True:
+		with open(err_log, "a") as f:
+			f.write(request_word + "\n")
+
+
+
 def notice_me(msg):
 	user_info = itchat.search_friends(name='陈鹏')
 	if len(user_info) > 0:
@@ -147,27 +160,30 @@ def notice_me(msg):
 def voice_reply(msg):
 	msg.download(msg.fileName)
 	trans_msg = voice.translate(msg.fileName)
-	print(trans_msg)
-	notice_me(trans_msg)
+	do_respons(trans_msg)
+	# print(trans_msg)
+	# notice_me(trans_msg)
+
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
 
+	do_respons(msg['Text'])
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
 	# print(msg['User'])
 	# print(dear_list[msg['User']['NickName']])
 
-	for key in func_list:
-		idx = msg['Text'].find(key)
-		if idx == -1:
-			continue
-		ret = func_list[key](msg, key, idx)
+	# for key in func_list:
+	# 	idx = msg['Text'].find(key)
+	# 	if idx == -1:
+	# 		continue
+	# 	ret = func_list[key](msg, key, idx)
 
-		if ret != True:
-			with open(err_log, "a") as f:
-				f.write(msg['Text'] + "\n")
+	# 	if ret != True:
+	# 		with open(err_log, "a") as f:
+	# 			f.write(msg['Text'] + "\n")
 
 
 #
