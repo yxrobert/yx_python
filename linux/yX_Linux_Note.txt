@@ -1,0 +1,19 @@
+# 删除软链接
+rm ./bin  (not rm ./bin/)
+
+# 后台转前台
+jobs
+fg %1
+
+# 将目录添加进入环境变量
+echo "export PATH=/home/cqh:$PATH" >> /etc/profile
+echo "export PATH=/monchickey/ffmpeg/bin:$PATH" >> /etc/profile
+
+source /etc/profile
+
+# 设置时区
+# timedatectl list-timezones |grep Shanghai    #查找中国时区的完整名称
+Asia/Shanghai
+# timedatectl set-timezone Asia/Shanghai    #其他时区以此类推
+# ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+Asia/Tokyo
