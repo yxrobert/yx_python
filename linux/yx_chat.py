@@ -136,7 +136,7 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 
 
-def do_respons(request_word):
+def do_respons(request_word, msg):
 	for key in func_list:
 		idx = request_word.find(key)
 		if idx == -1:
@@ -160,7 +160,7 @@ def notice_me(msg):
 def voice_reply(msg):
 	msg.download(msg.fileName)
 	trans_msg = voice.translate(msg.fileName)
-	do_respons(trans_msg)
+	do_respons(trans_msg, msg)
 	# print(trans_msg)
 	# notice_me(trans_msg)
 
@@ -169,7 +169,7 @@ def voice_reply(msg):
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
 
-	do_respons(msg['Text'])
+	do_respons(msg['Text'], msg)
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
 	# print(msg['User'])
