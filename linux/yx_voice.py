@@ -37,9 +37,7 @@ class yXVoice():
 		})
 
 		print(msg)
-		print(msg.get("err_no"))
 		if msg.get("err_no") == 0:
-			print(msg.get("result")[0])
 			return msg.get("result")[0]
 		else:
 			return ""
@@ -53,7 +51,7 @@ def get_file_content(filePath):
         return fp.read()
 
 def translate(file_path):
-	voice.asr(file_path)
+	return voice.asr(file_path)
 
 
 def main():
