@@ -138,14 +138,14 @@ func_list[u"算命"] = get_gua
 
 def do_respons(request_word):
 	for key in func_list:
-	idx = request_word.find(key)
-	if idx == -1:
-		continue
-	ret = func_list[key](msg, key, idx)
+		idx = request_word.find(key)
+		if idx == -1:
+			continue
+		ret = func_list[key](msg, key, idx)
 
-	if ret != True:
-		with open(err_log, "a") as f:
-			f.write(request_word + "\n")
+		if ret != True:
+			with open(err_log, "a") as f:
+				f.write(request_word + "\n")
 
 
 
