@@ -39,8 +39,8 @@ class yXVoice():
 		print(msg)
 		print(msg.get("err_no"))
 		if msg.get("err_no") == 0:
-			print(msg.get("result")[0][2 : -2])
-			return msg.get("result")[0][2 : -2]
+			print(msg.get("result")[0])
+			return msg.get("result")[0]
 		else:
 			return ""
 
