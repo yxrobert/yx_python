@@ -3,6 +3,7 @@
 
 from aip import AipSpeech
 from pydub import AudioSegment
+import os
 
 
 # yasm-1.3.0.tar.gz
@@ -29,12 +30,17 @@ class yXVoice():
 
 	def asr(self, file_path):
 		# 
+		old_file = file_path
 		file_path = self.convert_fmt(file_path)
 		
 		# 识别本地文件
 		msg = self.client.asr(get_file_content(file_path), 'pcm', 16000, {
 		    'dev_pid': 1536,
 		})
+
+		# 
+		os.remove(old_file)
+		os.remove(file_path)
 
 		print(msg)
 		if msg.get("err_no") == 0:
