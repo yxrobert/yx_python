@@ -162,7 +162,6 @@ def notice_me(msg):
 @itchat.msg_register(['Recording'])
 def voice_reply(msg):
 	msg.download(msg.fileName)
-	print(msg)
 	trans_msg = voice.translate(msg.fileName)
 	do_respons(trans_msg, msg)
 	# print(trans_msg)
