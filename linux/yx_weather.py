@@ -85,7 +85,7 @@ def constellation(cons):
 
 def get_weather_info_moji(area):
 	url = weather_moji_url + area
-	htmlData = request.urlopen(url).read().decode('utf-8')
+	htmlData = requests.urlopen(url).read().decode('utf-8')
 
 	soup = BeautifulSoup(htmlData, 'lxml')
 	weather = soup.find('div',attrs={'class':"wea_weather clearfix"})
