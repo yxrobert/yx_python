@@ -87,9 +87,9 @@ def get_xy(msg):
 
 def get_user_city(msg):
 	try:
-		return dear_list[msg['User']['NickName']]["zone"]
+		return dear_list[msg['User']['NickName']]["zone"], dear_list[msg['User']['NickName']]["area"]
 	except Exception:
-		return 101010300
+		return 101010300, "beijing/chaoyang-district"
 	
 
 def get_user_cons(msg):
@@ -97,9 +97,9 @@ def get_user_cons(msg):
 
 
 def get_weather(msg, key, idx):
-	city_code = get_user_city(msg)
+	city_code, area = get_user_city(msg)
 	d = get_day_desc(msg['Text'])
-	content = weather.get_weather_info(city_code, d)
+	content = weather.get_weather_info(city_code, area, d)
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 
@@ -213,7 +213,7 @@ def get_uuid_by_account(acc):
 
 def get_weather_info(name, info):
 	# print(name)
-	today_msg = weather.get_weather_info(info["zone"])
+	today_msg = weather.get_weather_info(info["zone"], info["area"])
 	name_uuid = get_uuid_by_name(name)
 	# print(name_uuid)
 	itchat.send(today_msg, toUserName=name_uuid)
@@ -228,8 +228,8 @@ def get_weather_info_ex(name, info):
 
 	today_msg = weather.constellation(info["cons"])
 	itchat.send(today_msg, toUserName=name_uuid)
-	
-	today_msg = weather.get_weather_info(info["zone"])
+
+	today_msg = weather.get_weather_info(info["zone"], info["area"])
 	itchat.send(today_msg, toUserName=name_uuid)
 
 
@@ -250,12 +250,12 @@ def start_today_info(name, info):
 
 # 济南 101120101 朝阳区 101010300
 dear_list = {
-	u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":2, "cons":"Leo"},
-	u"陈鹏": {"hour": 0, "minite": 15, "zone": 101010300, "wx": u"yanxie1103", "day_func": 1, "cons": "Taurus"},
-	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo"},
-	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo"},
-	u'孟小毛': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius"},
-	u'Grace': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"littlewhalew", "day_func": 2, "cons": "Capricorn"},
+	u"单文博" : {"hour":7, "minite":30, "zone":101010300, "wx":u"swb123aa", "day_func":2, "cons":"Leo", "area":"beijing/chaoyang-district"},
+	u"陈鹏": {"hour": 0, "minite": 15, "zone": 101010300, "wx": u"yanxie1103", "day_func": 1, "cons": "Taurus", "area":"beijing/chaoyang-district"},
+	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo", "area":"beijing/chaoyang-district"},
+	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo", "area":"shanghai/jing'an-district"},
+	u'孟小毛': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius", "area":"shandong/jinan"},
+	u'Grace': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"littlewhalew", "day_func": 2, "cons": "Capricorn", "area":"shandong/jinan"},
 }
 
 def run_daily_job():

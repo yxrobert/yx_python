@@ -14,15 +14,7 @@ import yx_yi as YI
 weather_url = 'http://t.weather.sojson.com/api/weather/city/'
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"}
 
-weather_moji_url = 'https://tianqi.moji.com/weather/china'
-
-
-def get_weather_info_moji(position):
-	url = weather_url + str(city_code)
-	resp = requests.get(url, headers=headers)
-
-	if resp.status_code == 200 and resp.json().get('status') == 200:
-		root = etree.HTML(resp.text)
+weather_moji_url = 'https://tianqi.moji.com/weather/china/'
 
 
 day_desc = [
@@ -91,8 +83,57 @@ def constellation(cons):
 	text = text + '健康运势：' + soup_texts.find_all('span')[4].string + '\n\n'
 	return text
 
+def get_weather_info_moji(area):
+	url = weather_moji_url + area
+	htmlData = request.urlopen(url).read().decode('utf-8')
 
-def get_weather_info(city_code, idx = 0):
+	soup = BeautifulSoup(htmlData, 'lxml')
+	weather = soup.find('div',attrs={'class':"wea_weather clearfix"})
+	temp1 = weather.find('em').get_text()
+	temp2 = weather.find('b').get_text()
+
+	# 空气质量AQI
+	AQI = soup.select(".wea_alert.clearfix > ul > li > a > em")[0].get_text()
+	#湿度
+	H = soup.select(".wea_about.clearfix > span")[0].get_text()
+	#风速
+	S = soup.select(".wea_about.clearfix > em")[0].get_text()
+
+	#今日天气提示
+	A = soup.select(".wea_tips.clearfix em")[0].get_text()
+	#紫外线强度
+	U = soup.select(".live_index_grid > ul > li")[-3].find('dt').get_text()
+	#获取当天日期
+	DATE = str(datetime.date.today())
+
+	info = DATE + '\n'
+	info += '实时温度：' + temp1 + '℃' + ',' + temp2 + '\n'  
+	info += '湿度：' + H + '\n' 
+	info += '风速：' + S + '\n' 
+	info += '紫外线：' + U +'\n' 
+	info += '今日提示：' + A +'\n\n'
+
+	#获取明日天气
+	tomorrow = soup.select(".days.clearfix ")[1].find_all('li')
+	#明日温度
+	temp_t = tomorrow[2].get_text().replace('°','℃')+ ','  + tomorrow[1].find('img').attrs['alt']
+	S_t1 = tomorrow[3].find('em').get_text()
+	S_t2 = tomorrow[3].find('b').get_text()
+	#明日风速
+	S_t = S_t1 + S_t2
+	#明日空气质量
+	AQI_t = tomorrow[-1].get_text().strip()
+
+	info += '\n明日天气：\n' 
+	info += '温度：' + temp_t + '\n'
+	info += '风速：' + S_t + '\n' 
+	info += '空气质量：' + AQI_t + '\n'
+
+	print(info)
+	return info
+
+
+def get_t_weather_info(city_code, idx = 0):
 	
 	url = weather_url + str(city_code)
 	resp = requests.get(url, headers=headers)
@@ -162,14 +203,23 @@ def get_weather_info(city_code, idx = 0):
 		print(content)
 		return content
 
+def get_weather_info(city_code, area, idx = 0):
+	try:
+		return get_weather_info_moji(area)
+	except Exception:
+		return get_t_weather_info(city_code, idx = 0)
+	
+
 
 def main():
-	s = get_gua()
+	# s = get_gua()
 	# s = constellation('taurus')
 	# s = get_weather_info(101010300)
 	# s = get_weather_info(101010300, 1)
 	# s = get_weather_info(101010300, 2)
 	# s = get_weather_info(101010300, 3)
+
+	s = get_weather_info_moji("beijing/chaoyang-district")
 	print(s)
 
 
