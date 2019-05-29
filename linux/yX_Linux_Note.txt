@@ -5,6 +5,14 @@ rm ./bin  (not rm ./bin/)
 jobs
 fg %1
 
+# 光标移动
+ctrl+左右键:在单词之间跳转
+ctrl+a:跳到本行的行首
+ctrl+e:跳到页尾
+
+#
+yum -y install lrzsz
+
 # 将目录添加进入环境变量
 echo "export PATH=/home/cqh:$PATH" >> /etc/profile
 echo "export PATH=/monchickey/ffmpeg/bin:$PATH" >> /etc/profile
@@ -17,3 +25,14 @@ Asia/Shanghai
 # timedatectl set-timezone Asia/Shanghai    #其他时区以此类推
 # ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 Asia/Tokyo
+
+# 
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'AJnMyYu756Gix7h6'
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('AJnMyYu756Gix7h6');
+
+# setup Nginx
+wget -c https://nginx.org/download/nginx-1.16.0.tar.gz
+
+# setup php
+wget http://ar2.php.net/distributions/php-7.2.18.tar.gz
+/configure  -enable-fpm
