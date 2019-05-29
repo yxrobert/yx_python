@@ -105,7 +105,7 @@ def get_weather_info_moji(area):
 	#紫外线强度
 	U = soup.select(".live_index_grid > ul > li")[-3].find('dt').get_text()
 	#获取当天日期
-	DATE = str(datetime.date.today())
+	DATE = datetime.now().strftime('%Y年%m月%d日 %A')
 
 	info = DATE + '\n'
 	info += '实时温度：' + temp1 + '℃' + ',' + temp2 + '\n'  
