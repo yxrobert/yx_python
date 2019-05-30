@@ -88,7 +88,7 @@ def get_weather_info_moji(area):
 	resp = requests.get(url, headers=headers)
 	# htmlData = requests.urlopen(url).read().decode('utf-8')
 	soup = BeautifulSoup(resp.text, 'lxml')
-	
+
 	weather = soup.find('div',attrs={'class':"wea_weather clearfix"})
 	temp1 = weather.find('em').get_text()
 	temp2 = weather.find('b').get_text()
@@ -132,6 +132,43 @@ def get_weather_info_moji(area):
 
 	print(info)
 	return info
+
+
+def get_weather_info_moji_ex(area):
+	url = weather_moji_url + area
+	resp = requests.get(url, headers=headers)
+	soup = BeautifulSoup(resp.text, 'lxml')
+
+	#获取当天日期
+	DATE = datetime.now().strftime('%Y年%m月%d日 %A')
+	# 空气质量AQI
+	AQI = soup.select(".wea_alert.clearfix > ul > li > a > em")[0].get_text()
+
+	weather = soup.find('head',attrs={'name':"description"})
+	desc = weather.get_text()
+
+	info = DATE + '\n'
+	info += desc + '\n'
+
+	#获取明日天气
+	tomorrow = soup.select(".days.clearfix ")[1].find_all('li')
+	#明日温度
+	temp_t = tomorrow[2].get_text().replace('°','℃')+ ','  + tomorrow[1].find('img').attrs['alt']
+	S_t1 = tomorrow[3].find('em').get_text()
+	S_t2 = tomorrow[3].find('b').get_text()
+	#明日风速
+	S_t = S_t1 + S_t2
+	#明日空气质量
+	AQI_t = tomorrow[-1].get_text().strip()
+
+	info += '\n明日天气：\n' 
+	info += '温度：' + temp_t + '\n'
+	info += '风速：' + S_t + '\n' 
+	info += '空气质量：' + AQI_t + '\n'
+
+	print(info)
+	return info
+
 
 
 def get_t_weather_info(city_code, idx = 0):
@@ -220,7 +257,7 @@ def main():
 	# s = get_weather_info(101010300, 2)
 	# s = get_weather_info(101010300, 3)
 
-	s = get_weather_info_moji("beijing/chaoyang-district")
+	s = get_weather_info_moji_ex("beijing/chaoyang-district")
 	print(s)
 
 
