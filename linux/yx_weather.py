@@ -243,7 +243,7 @@ def get_t_weather_info(city_code, idx = 0):
 
 def get_weather_info(city_code, area, idx = 0):
 	try:
-		return get_weather_info_moji(area)
+		return get_weather_info_moji_ex(area)
 	except Exception:
 		return get_t_weather_info(city_code, idx = 0)
 	
