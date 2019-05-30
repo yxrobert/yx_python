@@ -144,7 +144,7 @@ def get_weather_info_moji_ex(area):
 	# 空气质量AQI
 	AQI = soup.select(".wea_alert.clearfix > ul > li > a > em")[0].get_text()
 
-	weather = soup.find('head',attrs={'name':"description"})
+	weather = soup.head.find('mete',attrs={'name':"description"})
 	desc = weather.get_text()
 
 	info = DATE + '\n'
