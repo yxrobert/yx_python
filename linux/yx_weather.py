@@ -146,7 +146,7 @@ def get_weather_info_moji_ex(area):
 	# print(soup.head)
 	weather = soup.head.find('meta',attrs={'name':"description"})
 	desc = weather["content"]
-	idx = desc.find("墨迹") - 1
+	idx = desc.find("墨迹天气") - 1
 	desc = desc[:idx] + '，空气质量:' + str(AQI) + desc[idx:]
 	desc.replace("墨迹天气", "chenpeng")
 
