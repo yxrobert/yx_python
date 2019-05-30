@@ -145,7 +145,7 @@ def get_weather_info_moji_ex(area):
 	AQI = soup.select(".wea_alert.clearfix > ul > li > a > em")[0].get_text()
 	# print(soup.head)
 	weather = soup.head.find('meta',attrs={'name':"description"})
-	desc = weather["content"]
+	desc = weather["content"].replace("墨迹天气", "chenpeng")
 
 	info = DATE + '\n'
 	info += desc + '\n'
