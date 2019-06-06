@@ -26,13 +26,82 @@ Asia/Shanghai
 # ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 Asia/Tokyo
 
-# 
+# mysql
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'AJnMyYu756Gix7h6'
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('AJnMyYu756Gix7h6');
+drop user 'G_USER'@%'; 
 
 # setup Nginx
 wget -c https://nginx.org/download/nginx-1.16.0.tar.gz
 
 # setup php
-wget http://ar2.php.net/distributions/php-7.2.18.tar.gz
+# wget http://ar2.php.net/distributions/php-7.2.18.tar.gz
 /configure  -enable-fpm
+yum install libxml2-devel
+
+# setup phpize
+yum install php-devel
+下载解压php5.3.3 源码
+cd /home/soft/php-5.3.3/ext/shmop
+./configure --with-php-config=/usr/bin/php-config
+ipcs -m //查看共享内存
+
+# yum 安装web服务器
+yum install nginx.x86_64
+yum install php.x86_64
+yum install php-redis.x86_64
+yum install redis.x86_64
+yum install mysql-server.x86_64
+yum install php-fpm.x86_64
+
+# 配置
+# 启动redis
+cp /etc/redis.conf redis_web.conf
+redis-server redis_web.conf &
+
+# cd /etc
+# cp php-fpm.conf.default php-fpm.conf
+# /etc/php-fpm.d/*.conf
+
+# 配置nginx
+/usr/share/nginx/html
+cd /etc/nginx/
+mv nginx.conf.default nginx.conf
+修改配置 打开
+location ~ \.php$ {
+                    root /usr/share/nginx/html; #指定php的根目录
+                    fastcgi_pass 127.0.0.1:9000;#php-fpm的默认端口是9000
+                    fastcgi_index index.php;
+                    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                    include fastcgi_params;
+            }
+
+nginx -c /etc/nginx/nginx.conf
+nginx -s reload
+
+
+# 分区
+fdisk -l 	// 查看
+fdisk /dev/hdd  // 分区某一块
+n/p/1/w
+mkfs.ext4 	// 格式化分区
+mount /dev/hdd1 /hdd1  // 挂载
+
+mount /dev/vdb1  /GameServer/
+mount /dev/vdb2  /MYSQLDATA/
+mount /dev/vdb3  /REDISDATA/
+
+# mysql 配置
+mkdir -p /MYSQLDATA/mysql/data
+mkdir -p /MYSQLDATA/mysql/binlog
+chown -R mysql:mysql /MYSQLDATA/mysql
+chmod -R 755 /MYSQLDATA/mysql
+
+
+
+
+
+
+
+
+
