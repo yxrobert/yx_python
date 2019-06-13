@@ -103,6 +103,13 @@ def get_weather(msg, key, idx):
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 
+def get_more_weather():
+	city_code, area = get_user_city(msg)
+	d = get_day_desc(msg['Text'])
+	content = weather.get_t_weather_info(city_code, d)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])	
+
+
 def get_one(msg, key, idx):
 	content = weather.get_dictum_info()
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
@@ -126,8 +133,8 @@ def get_gua(msg, key, idx):
 func_list = {}
 func_list[u"我想看电影"] = find_movie
 func_list[u"天气怎么样"] = get_weather
-func_list[u"看天气"] = get_weather
-func_list[u"天气好"] = get_weather
+func_list[u"看天气"] = get_more_weather
+func_list[u"天气好"] = get_more_weather
 func_list[u"下雨"] = get_weather
 func_list[u"One"] = get_one
 func_list[u"运气怎么样"] = get_cons
@@ -256,7 +263,7 @@ dear_list = {
 	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo", "area":"beijing/chaoyang-district"},
 	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo", "area":"shanghai/jing'an-district"},
 	u'孟小毛': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius", "area":"shandong/jinan"},
-	u'小布丁': {"hour": 6, "minite": 15, "zone": 101010300, "wx": u"wxid_ezndyt05p2an21", "day_func": 2, "cons": "Capricorn", "area":"beijing/haidian-district"},
+	u'小布丁': {"hour": 6, "minite": 15, "zone": 101010200, "wx": u"wxid_ezndyt05p2an21", "day_func": 2, "cons": "Capricorn", "area":"beijing/haidian-district"},
 }
 
 def run_daily_job():
