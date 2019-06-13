@@ -129,6 +129,15 @@ def get_gua(msg, key, idx):
 	content = weather.get_gua(x, y)
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
+
+def get_somewhere(msg, key, idx):
+	city_code, area = get_user_city(msg)
+	d = get_day_desc(msg['Text'])
+	content = weather.get_weather_info(city_code, area, d)
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+
+
+
 #
 func_list = {}
 func_list[u"我想看电影"] = find_movie
@@ -145,6 +154,7 @@ func_list[u"起卦"] = get_gua
 func_list[u"占卜"] = get_gua
 func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
+func_list[u"海淀区"] = get_somewhere
 
 
 def do_respons(request_word, msg):
