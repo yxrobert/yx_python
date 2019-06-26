@@ -151,8 +151,8 @@ def get_voice(msg, key, idx):
 	if len(content) > 0:
 		tmp_file = word.word.text_to_voice(content)
 		if tmp_file != '':
-			# itchat.send_file(tmp_file, msg['FromUserName'])
-			itchat.send_video(tmp_file, msg['FromUserName'])
+			itchat.send_file(tmp_file, msg['FromUserName'])
+			# itchat.send_video(tmp_file, msg['FromUserName'])
 			os.remove(tmp_file)
 
 
