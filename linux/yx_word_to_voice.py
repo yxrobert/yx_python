@@ -25,7 +25,7 @@ PIT = 5
 # 音量，取值0-9，默认为5中音量
 VOL = 5
 # 下载的文件格式, 3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
-AUE = 3
+AUE = 4
 
 FORMATS = {3: "mp3", 4: "pcm", 5: "pcm", 6: "wav"}
 FORMAT = FORMATS[AUE]
