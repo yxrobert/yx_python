@@ -46,22 +46,41 @@ cd /home/soft/php-5.3.3/ext/shmop
 ./configure --with-php-config=/usr/bin/php-config
 ipcs -m //查看共享内存
 
+# 部署web服务器
+# 更换源
+yum install epel-release
+修改文件“/etc/yum.repos.d/epel.repo”， 将baseurl的注释取消， mirrorlist注释掉
+
 # yum 安装web服务器
+yum install mysql.x86_64
 yum install nginx.x86_64
 yum install php.x86_64
 yum install php-redis.x86_64
 yum install redis.x86_64
 yum install mysql-server.x86_64
 yum install php-fpm.x86_64
+yum install php-mysql.x86_64 
+
+# 数据库
+service mysqld start
+mysql
+create database chat;
+CREATE USER 'loc'@'127.0.0.1' IDENTIFIED BY '123qwe';
+grant all privileges on slg.* to 'loc'@127.0.0.1 identified by '123qwe';
+flush privileges;
+
 
 # 配置
 # 启动redis
+cd /etc/
 cp /etc/redis.conf redis_web.conf
 redis-server redis_web.conf &
 
 # cd /etc
 # cp php-fpm.conf.default php-fpm.conf
 # /etc/php-fpm.d/*.conf
+service php-fpm start
+
 
 # 配置nginx
 /usr/share/nginx/html
@@ -83,8 +102,19 @@ nginx -s reload
 # 分区
 fdisk -l 	// 查看
 fdisk /dev/hdd  // 分区某一块
-n/p/1/w
-mkfs.ext4 	// 格式化分区
+step:
+	n (create)
+	p 1 (磁盘号)
+	enter 起始位置 default
+	+size G (+250G/+150G/100G)
+	w Save
+
+mkfs.ext4 	
+// 格式化分区
+mkfs.ext4 /vdb1
+mkfs.ext4 /vdb2
+mkfs.ext4 /vdb3
+
 mount /dev/hdd1 /hdd1  // 挂载
 
 mount /dev/vdb1  /GameServer/
@@ -92,11 +122,23 @@ mount /dev/vdb2  /MYSQLDATA/
 mount /dev/vdb3  /REDISDATA/
 
 # mysql 配置
+groupadd mysql     //创建mysql组
+useradd -g mysql mysql //创建mysql用户添加到mysql组
 mkdir -p /MYSQLDATA/mysql/data
 mkdir -p /MYSQLDATA/mysql/binlog
 chown -R mysql:mysql /MYSQLDATA/mysql
 chmod -R 755 /MYSQLDATA/mysql
 
+
+# 开放端口
+1、开启80端口命令：
+/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+2、保存配置 命令：
+/etc/rc.d/init.d/iptables save
+3、重启服务命令 ：
+/etc/rc.d/init.d/iptables restart
+4、查看已经开放的端口： 
+/etc/init.d/iptables status
 
 
 
