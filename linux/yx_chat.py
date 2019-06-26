@@ -8,9 +8,11 @@ import sys
 import itchat
 import time
 import threading
+import os
 # from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 import yx_voice as voice
+import yx_word_to_voice as word
 
 reload(sys)
 
@@ -85,6 +87,13 @@ def get_xy(msg):
 	l = msg.split(' ')
 	return int(l[1]), int(l[2])
 
+def get_content(msg):
+	idx = msg.find(' ')
+	if idx > 0:
+		return msg[idx + 1 : ]
+	else:
+		return ''
+
 def get_user_city(msg):
 	try:
 		return dear_list[msg['User']['NickName']]["zone"], dear_list[msg['User']['NickName']]["area"]
@@ -137,6 +146,16 @@ def get_somewhere(msg, key, idx):
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
 
 
+def get_voice(msg, key, idx):
+	content = get_content(msg['Text'])
+	if len(content) > 0:
+		tmp_file = word.word.text_to_voice(content)
+		if f != '':
+			itchat.send_file(tmp_file, msg['FromUserName'])
+			os.remove(tmp_file)
+
+
+
 
 #
 func_list = {}
@@ -155,6 +174,7 @@ func_list[u"占卜"] = get_gua
 func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 func_list[u"海淀区"] = get_somewhere
+func_list[u"转语音"] = get_voice
 
 
 def do_respons(request_word, msg):
@@ -167,7 +187,6 @@ def do_respons(request_word, msg):
 		if ret != True:
 			with open(err_log, "a") as f:
 				f.write(request_word + "\n")
-
 
 
 def notice_me(msg):
@@ -185,8 +204,6 @@ def voice_reply(msg):
 	do_respons(trans_msg, msg)
 	# print(trans_msg)
 	# notice_me(trans_msg)
-
-
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
