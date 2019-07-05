@@ -61,6 +61,11 @@ yum install mysql-server.x86_64
 yum install php-fpm.x86_64
 yum install php-mysql.x86_64 
 
+# log
+# 解析php错误
+/var/log/php-fpm www-error.log
+
+
 # 数据库
 service mysqld start
 mysql
@@ -101,7 +106,7 @@ nginx -s reload
 
 # 分区
 fdisk -l 	// 查看
-fdisk /dev/hdd  // 分区某一块
+fdisk /dev/hdd1  // 分区某一块
 step:
 	n (create)
 	p 1 (磁盘号)
@@ -128,6 +133,10 @@ mkdir -p /MYSQLDATA/mysql/data
 mkdir -p /MYSQLDATA/mysql/binlog
 chown -R mysql:mysql /MYSQLDATA/mysql
 chmod -R 755 /MYSQLDATA/mysql
+
+#配置mysqld使用jemalloc，需要将配置写到[mysqld_safe] section
+[mysqld_safe]
+malloc-lib=/usr/lib64/libjemalloc.so.1
 
 
 # 开放端口
