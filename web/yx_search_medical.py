@@ -18,14 +18,26 @@ url_addr = "http://12333.qingdao.gov.cn/grcx2/public/f10030110/index.action?reso
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"}
 
 data = {
-	'cxtj1' : 1, 
+	'cxtj1' : '1', 
 	'cxtj2' : "",
-	'cxtj3' : 1,
-	'pageIndex' : 1,
-	'pageSize' : 10,
+	'cxtj3' : '1',
+	'pageIndex' : '1',
+	'pageSize' : '10',
 	'sortField' : "",
 	'sortOrder' : "",
 }
+
+# data = "cxtj1=1&cxtj2=&cxtj3=1&pageIndex=199&pageSize=10&sortField=&sortOrder="
+
+def unicode_convert(input):
+    if isinstance(input, dict):
+        return {unicode_convert(key): unicode_convert(value) for key, value in input.iteritems()}
+    elif isinstance(input, list):
+        return [unicode_convert(element) for element in input]
+    elif isinstance(input, unicode):
+        return input.encode('utf-8')
+    else:
+        return input
 
 def main():
 	# req = requests.get(url_addr, headers=headers)
@@ -33,8 +45,10 @@ def main():
 	# req.encoding = 'gbk'
 	# root = etree.HTML(req.text)
 
-	req = requests.get(url_addr, headers=headers, data=data)
-	print(req.text)
+	_data = unicode_convert(data)
+	print _data
+	# req = requests.get(url_addr, headers=headers, data=data)
+	# print(req.text)
 
 
 if __name__ == "__main__":
