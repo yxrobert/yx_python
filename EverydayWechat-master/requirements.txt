@@ -1,4 +1,7 @@
+itchat==1.3.10
 requests
 beautifulsoup4
-itchat
 apscheduler
+pymongo
+pyyaml
+lxml
