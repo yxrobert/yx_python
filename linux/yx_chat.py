@@ -158,7 +158,7 @@ def get_voice(msg, key, idx):
 
 def auto_talk(msg):
 	content = talk.qq_talker.do_respons(msg['Text'], msg['FromUserName'])
-	print(content)
+	sleep(len(content) / 5)
 	itchat.send('%s' % (content), msg['FromUserName'])
 
 
