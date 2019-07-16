@@ -57,6 +57,7 @@ class yXQQTalker():
         :return: str
         """
         try:
+            print(userId)
             # 产生随机字符串
             nonce_str = ''.join(random.sample(
                 string.ascii_letters + string.digits, random.randint(10, 16)))
