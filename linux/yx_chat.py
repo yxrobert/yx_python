@@ -13,6 +13,7 @@ import os
 from apscheduler.schedulers.background import BackgroundScheduler
 import yx_voice as voice
 import yx_word_to_voice as word
+import yx_qq_talk as talk
 
 reload(sys)
 
@@ -155,7 +156,9 @@ def get_voice(msg, key, idx):
 			# itchat.send_video(tmp_file, msg['FromUserName'])
 			os.remove(tmp_file)
 
-
+def auto_talk(msg):
+	content = talk.do_respons(msg['Text'], msg['FromUserName'])
+	itchat.send('%s' % (content), msg['FromUserName'])
 
 
 #
@@ -176,6 +179,19 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 func_list[u"海淀区"] = get_somewhere
 func_list[u"转语音"] = get_voice
+
+
+#
+auto_swich = False
+def func_auot_talk_on():
+	auto_swich = True
+
+def func_auot_talk_off():
+	auto_swich = False
+
+func_swich_list = {}
+func_swich_list[u"auto on"] = func_auot_talk_on
+func_swich_list[u"auto off"] = func_auot_talk_off
 
 
 def do_respons(request_word, msg):
@@ -208,8 +224,10 @@ def voice_reply(msg):
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
-
-	do_respons(msg['Text'], msg)
+	if auto_swich:
+		auto_talk(msg)
+	else:
+		do_respons(msg['Text'], msg)
 	# itchat.send('%s: %s'%(msg['Type'], msg['FromUserName']), msg['FromUserName'])
 	# if msg['FromUserName'] in dear_list:
 	# print(msg['User'])

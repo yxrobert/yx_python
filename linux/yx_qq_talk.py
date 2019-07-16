@@ -85,7 +85,6 @@ class yXQQTalker():
 
 qq_talker = yXQQTalker()
 
-
 def main():
     message = "你好啊"
     user_id = 13552001103
