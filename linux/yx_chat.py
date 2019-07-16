@@ -190,11 +190,20 @@ def func_auot_talk_on():
 def func_auot_talk_off():
 	auto_swich = False
 	print("auto_swich = False")
-	
+
 
 func_swich_list = {}
 func_swich_list[u"auto on"] = func_auot_talk_on
 func_swich_list[u"auto off"] = func_auot_talk_off
+
+def check_func_swich(request_word):
+	for key in func_swich_list:
+		idx = request_word.find(key)
+		if idx == -1:
+			continue
+		else:
+			func_swich_list[key]()
+			break
 
 
 def do_respons(request_word, msg):
@@ -227,6 +236,10 @@ def voice_reply(msg):
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
 def text_reply(msg):
+	#
+	check_func_swich(msg['Text'])
+
+	#
 	if auto_swich:
 		auto_talk(msg)
 	else:
