@@ -185,9 +185,12 @@ func_list[u"转语音"] = get_voice
 auto_swich = False
 def func_auot_talk_on():
 	auto_swich = True
+	print("auto_swich = True")
 
 def func_auot_talk_off():
 	auto_swich = False
+	print("auto_swich = False")
+	
 
 func_swich_list = {}
 func_swich_list[u"auto on"] = func_auot_talk_on
