@@ -66,7 +66,7 @@ class yXQQTalker():
                 'question': text  # 用户输入的聊天内容
             }
             # 签名信息
-            params['sign'] = getReqSign(params, app_key)
+            params['sign'] = self.getReqSign(params, app_key)
             resp = requests.get(URL, params=params)
             if resp.status_code == 200:
                 # print(resp.text)
