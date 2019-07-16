@@ -77,8 +77,7 @@ class yXQQTalker():
                 if content_dict['ret'] == 0:
                     data_dict = content_dict['data']
                     return data_dict['answer']
-
-                print('智能闲聊 获取数据失败:{}'.format(content_dict['msg']))
+                print('智能闲聊 获取数据失败:{} 错误码:{}'.format(content_dict['msg'], content_dict['ret']))
                 return None
         except Exception as exception:
             print(str(exception))
