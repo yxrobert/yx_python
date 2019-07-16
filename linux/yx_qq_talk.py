@@ -7,7 +7,7 @@ import time
 import random
 import string
 import json
-import urllib.request
+import requests
 
 app_id = "2118644928"
 app_key = "tykIR6EjtYw234P0"
