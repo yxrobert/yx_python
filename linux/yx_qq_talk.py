@@ -12,6 +12,15 @@ import json
 app_id = "2118644928"
 app_key = "tykIR6EjtYw234P0"
 
+def md5_encode(text):
+    """ 把數據 md5 化 """
+    if not isinstance(text, str):
+        text = str(text)
+    md5 = hashlib.md5()
+    md5.update(text.encode('utf-8'))
+    encodedStr = md5.hexdigest().upper()
+    return encodedStr
+
 
 class yXQQTalker():
     def __init__(self):
@@ -76,7 +85,7 @@ qq_talker = yXQQTalker()
 
 
 def main():
-    message = "没有次数了?"
+    message = "你好啊"
     user_id = 13552001103
     resp = qq_talker.do_respons(message, user_id)
     print(resp)
