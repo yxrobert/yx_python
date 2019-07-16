@@ -12,6 +12,9 @@ import requests
 app_id = "2118644928"
 app_key = "tykIR6EjtYw234P0"
 
+URL = 'https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat'
+
+
 def md5_encode(text):
     """ 把數據 md5 化 """
     if not isinstance(text, str):
