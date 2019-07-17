@@ -158,7 +158,7 @@ def get_voice(msg, key, idx):
 
 def auto_talk(msg):
 	content = talk.qq_talker.do_respons(msg['Text'], msg['FromUserName'])
-	time.sleep(len(content) / 5)
+	time.sleep(len(content) / 2)
 	itchat.send('%s' % (content), msg['FromUserName'])
 
 
@@ -185,12 +185,12 @@ func_list[u"转语音"] = get_voice
 #
 auto_swich = False
 def func_auot_talk_on():
-	global auto_swich
+	# global auto_swich
 	auto_swich = True
 	print("auto_swich = True")
 
 def func_auot_talk_off():
-	global auto_swich
+	# global auto_swich
 	auto_swich = False
 	print("auto_swich = False")
 
