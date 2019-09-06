@@ -121,10 +121,11 @@ mkfs.ext4 /vdb2
 mkfs.ext4 /vdb3
 
 mount /dev/hdd1 /hdd1  // 挂载
+# create file above /home
 
-mount /dev/vdb1  /GameServer/
-mount /dev/vdb2  /MYSQLDATA/
-mount /dev/vdb3  /REDISDATA/
+mount /dev/sdb1  /GameServer/
+mount /dev/sdb2  /MYSQLDATA/
+mount /dev/sdb3  /REDISDATA/
 
 # mysql 配置
 groupadd mysql     //创建mysql组
@@ -133,6 +134,17 @@ mkdir -p /MYSQLDATA/mysql/data
 mkdir -p /MYSQLDATA/mysql/binlog
 chown -R mysql:mysql /MYSQLDATA/mysql
 chmod -R 755 /MYSQLDATA/mysql
+
+# service mysqld start 失败
+selinux搞的鬼，设置为permissive模式之后正常启动mysqld
+getenforce
+setenforce 0
+
+# 启动失败 Table 'mysql.plugin' doesn't exist
+# 执行初始化脚本
+./mysql_install_db --user=mysql --datadir=/MYSQLDATA/mysql/data
+./mysql_install_db --user=mysql --basedir=/home/mysql5627 --datadir=/usr/mysqldata
+
 
 #配置mysqld使用jemalloc，需要将配置写到[mysqld_safe] section
 [mysqld_safe]
@@ -149,9 +161,16 @@ malloc-lib=/usr/lib64/libjemalloc.so.1
 4、查看已经开放的端口： 
 /etc/init.d/iptables status
 
+gcore $pid 可以把进程内存导出来，man gcore 有详细说明
 
+strace -tt -T -v -f -e trace=file -o ./strace.log -s 1024 -p 2585745
 
+# 执行redis
+cat id.loc | redis-cli -h 127.0.0.1 -p 37379
 
+# 远程copy
+scp /home/administrator/news.txt root@192.168.6.129:/etc/squid
+scp /usr/local/flume_client.tar root@148.153.50.124:/usr/local
 
 
 
