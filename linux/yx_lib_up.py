@@ -6,7 +6,7 @@ import re
 
 def update():
 
-    pipList = os.popen('pip3 list').readlines() #这里就相当于我们在cmd里面输入pip3 list 展示 pip3 安装的所有包
+    pipList = os.popen('pip3 list --outdate').readlines() #这里就相当于我们在cmd里面输入pip3 list 展示 pip3 安装的所有包
 
     #print(pipList)
 
