@@ -52,14 +52,14 @@ yum install epel-release
 修改文件“/etc/yum.repos.d/epel.repo”， 将baseurl的注释取消， mirrorlist注释掉
 
 # yum 安装web服务器
-yum install mysql.x86_64
-yum install nginx.x86_64
-yum install php.x86_64
-yum install php-redis.x86_64
-yum install redis.x86_64
-yum install mysql-server.x86_64
-yum install php-fpm.x86_64
-yum install php-mysql.x86_64 
+sudo yum install mysql.x86_64
+sudo yum install nginx.x86_64
+sudo yum install php.x86_64
+sudo yum install php-redis.x86_64
+sudo yum install redis.x86_64
+sudo yum install mysql-server.x86_64
+sudo yum install php-fpm.x86_64
+sudo yum install php-mysql.x86_64 
 
 # log
 # 解析php错误
@@ -172,6 +172,7 @@ cat id.loc | redis-cli -h 127.0.0.1 -p 37379
 scp /home/administrator/news.txt root@192.168.6.129:/etc/squid
 scp /usr/local/flume_client.tar root@148.153.50.124:/usr/local
 
-
+# 添加公钥
+cat id_rsa.pub >> /home/game/.ssh/authorized_keys
 
 
