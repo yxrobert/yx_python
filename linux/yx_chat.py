@@ -328,11 +328,12 @@ dear_list = {
 	u'王洋🐳' : {"hour":6, "minite":15, "zone":101010300, "wx":u"wxid_4070450704312", "day_func":2, "cons":"Leo", "area":"beijing/chaoyang-district"},
 	u'Ada  阿哒哒💭': {"hour": 7, "minite": 30, "zone": 101021300, "wx": u"doria3159", "day_func": 1, "cons": "Leo", "area":"shanghai/nanhui-district"},
 	u'孟小毛': {"hour": 7, "minite": 30, "zone": 101120101, "wx": u"mengyuan9059", "day_func": 1, "cons": "Aquarius", "area":"shandong/jinan"},
-	u'小布丁': {"hour": 6, "minite": 15, "zone": 101010200, "wx": u"wxid_ezndyt05p2an21", "day_func": 1, "cons": "Capricorn", "area":"beijing/haidian-district"},
+	u'小布丁': {"hour": 6, "minite": 15, "zone": 101010200, "wx": u"wxid_ezndyt05p2an21", "day_func": 2, "cons": "Capricorn", "area":"beijing/haidian-district"},
 }
 
 def run_daily_job():
 	scheduler= BackgroundScheduler()
+
 	for k in dear_list:
 		arg= (k, dear_list[k])
 		# scheduler.add_job(start_today_info, 'interval', seconds=20, args=arg)
