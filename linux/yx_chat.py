@@ -156,6 +156,10 @@ def get_voice(msg, key, idx):
 			# itchat.send_video(tmp_file, msg['FromUserName'])
 			os.remove(tmp_file)
 
+def get_onlines(msg, key, idx):
+	content = sys_cmd.get_onlines()
+	itchat.send('%s' % (content), msg['FromUserName'])
+
 def auto_talk(msg):
 	content = talk.qq_talker.do_respons(msg['Text'], msg['FromUserName'])
 	time.sleep(len(content) / 2)
@@ -180,6 +184,7 @@ func_list[u"算卦"] = get_gua
 func_list[u"算命"] = get_gua
 func_list[u"海淀区"] = get_somewhere
 func_list[u"转语音"] = get_voice
+func_list[u"人数"] = get_onlines
 
 
 #
