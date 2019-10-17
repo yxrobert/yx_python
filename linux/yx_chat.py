@@ -14,6 +14,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import yx_voice as voice
 import yx_word_to_voice as word
 import yx_qq_talk as talk
+import yx_server_cmd as sys_cmd
 
 reload(sys)
 
