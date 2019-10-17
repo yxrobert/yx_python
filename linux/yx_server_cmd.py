@@ -16,6 +16,8 @@ def get_charge():
 def main():
 	s = get_onlines()
 	print(s)
+	s = get_charge()
+	print(s)
 
 
 
