@@ -9,7 +9,7 @@ def get_onlines():
 	return f.readlines()[-1]
 
 def get_charge():
-	cmd = "ssh -p 14036 game@39.96.244.26 cat input/log/server_1003/loc/Info.2019-10-* | grep \"pay success\" | wc -l"
+	cmd = "ssh -p 14036 game@39.96.244.26 cat /home/game/input/log/server_1003/loc/Info.2019-10-* | grep \"pay success\" | wc -l"
 	f = os.popen(cmd)
 	return f.readlines()[-1]
 
