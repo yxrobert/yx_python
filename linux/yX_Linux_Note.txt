@@ -175,4 +175,22 @@ scp /usr/local/flume_client.tar root@148.153.50.124:/usr/local
 # 添加公钥
 cat id_rsa.pub >> /home/game/.ssh/authorized_keys
 
+# 
+find . | xargs grep "custom"
+find . -type f | xargs grep "custom'
+grep -r "custom" -l
+find . -path ./.git -prune -o -type f | xargs grep "custom" -l
+find Warning.2019-10-23_08_00_00.svr_*  -type f | xargs grep "HandleShopBuy 262.shop item"
+
+# 关机的命令
+shutdown –h now halt poweroff 
+init 0
+# 重启系统的命令
+shutdown –r now reboot init 6
+
+
+# firebase
+5.1获取Firebase服务器API密钥
+Firebase提供Server API密钥以识别您的firebase应用。要获取服务器API密钥，请转到firebase控制台，选择项目和转到设置，选择“云消息传递”选项卡并复制服务器密钥
+
 
