@@ -193,4 +193,30 @@ shutdown –r now reboot init 6
 5.1获取Firebase服务器API密钥
 Firebase提供Server API密钥以识别您的firebase应用。要获取服务器API密钥，请转到firebase控制台，选择项目和转到设置，选择“云消息传递”选项卡并复制服务器密钥
 
+# cpu相关
+cat /proc/cpuinfo | grep "physical id" | uniq | wc -l
+cat /proc/cpuinfo | grep "cpu cores" | uniq
+cat /proc/cpuinfo | grep 'model name' |uniq
+
+# linux快捷设置
+vim ~/.bashrc
+alias ssh_='ssh ninetripod@10.0.0.11 -p'
+source
+
+# 删除所有表
+SELECT concat('DROP TABLE IF EXISTS ', table_name, ';')
+FROM information_schema.tables
+WHERE table_schema = 'mydb';
+
+# MemCache启动参数
+# /usr/local/bin/memcached -d -m 200 -u root -l 192.168.1.91 -p 12301 -c 1000 -P /tmp/memcached.pid
+-d选项是启动一个守护进程，
+-m是分配给Memcache使用的内存数量，单位是MB，这里是200MB
+-u是运行Memcache的用户，如果当前为 root 的话，需要使用此参数指定用户。
+-l是监听的服务器IP地址（不加这个选项，其它主机可以连接上）
+-p是设置Memcache监听的端口，我这里设置了12301，最好是1024以上的端口
+-c选项是最大运行的并发连接数，默认是1024，这里设置了256
+-P是设置保存Memcache的pid文件，我这里是保存在 /tmp/memcached.pid
+
+
 
