@@ -220,3 +220,4 @@ WHERE table_schema = 'mydb';
 
 
 
+watch -n 1 'echo "stats" | socat - UNIX-CLIENT:/var/memcache/memcached.sock' 这是看监控数据的办法

@@ -3,44 +3,21 @@
 
 import os.path
 
-file_dir = "/data/home/user00/log/log"
-filter_name = 'Warning.2020-04-1'
+file_dir = "/home/game/GameServer/server/log"
+filter_name = 'Warning.2019-'
 # redis_log = "redis statistics cmd="
-check_redis_lv = 5
-check_mem_get_lv = 5
+check_redis_lv = 20
+check_mem_get_lv = 10
 check_mem_mget_lv = 5
 
 
 table_record = {}
-table_record_count = {}
 
-def process_map(name, val):
+def process_map(name):
 	if table_record.has_key(name):
-		if table_record[name] < val:
-			table_record[name] = val
+		table_record[name] += 1
 	else:
-		table_record[name] = val
-
-
-def process_map_count(name):
-    if table_record_count.has_key(name):
-        table_record_count[name] += 1
-    else:
-        table_record_count[name] = 0
-
-
-# def process_line(line):
-# 	idx = line.find(redis_log)
-# 	idx_head = line.find(']')
-# 	if idx != -1:
-# 		head = line.find('=')
-# 		if head != -1:
-# 			val = int(line[head + 1: ])
-# 			if val > check_lv:
-# 				table_name = line[idx_head + 2 : idx]
-# 				process_map(table_name, val)
-# 				return line
-# 	return "" 
+		table_record[name] = 1
 
 
 def get_head_str(line):
@@ -48,7 +25,6 @@ def get_head_str(line):
 	head_begin = line.find(']') + 2
 	head_end = line[head_begin : ].find(" ")
 	return line[head_begin : head_begin + head_end]
-
 
 def check_redis(line, key):
 	head_str = get_head_str(line)
@@ -64,8 +40,6 @@ def check_redis(line, key):
 
 def check_memcache(line, key):
 	head_str = get_head_str(line)
-	process_map_count(head_str)
-
 	val_key = 'get='
 	head = line.find(val_key)
 	if head != -1:
@@ -93,8 +67,15 @@ def check_memcache(line, key):
 							# return line
 	return ""
 
-check_table = {"redis statistics" : [check_redis]
-	, "memcached statistics" : [check_memcache]}
+def check_count(line, key):
+	head_str = get_head_str(line)
+	process_map(head_str)
+
+
+check_table = {
+	# "redis statistics" : [check_redis]
+	# , "memcached statistics" : [check_memcache]
+	"Pktcs_" : [check_count]}
 
 def process_line(line):
 	for k in check_table:
@@ -115,17 +96,11 @@ def main():
 						line = f.readline()
 						while line:
 							log = process_line(line)
-							# if log != "":
-							# 	f_save.write(log)
-							# break
 							line = f.readline()
 					# break
 
 		for k in table_record.keys():
 			f_save.write(k + " : " + str(table_record[k]) + "\n")
-		f_save.write("\ncount : \n")
-        	for k in table_record_count.keys():
-            		f_save.write(k + " : " + str(table_record_count[k]) + "\n")
 
 if __name__ == '__main__':
 	main()
