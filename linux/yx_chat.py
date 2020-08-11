@@ -172,6 +172,12 @@ def auto_talk(msg):
 	itchat.send('%s' % (content), msg['FromUserName'])
 
 
+def call_mingbo(msg):
+	content = u"稍等片刻!已通知!!!"
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	name_uuid = get_uuid_by_name(u"陈鹏")
+	itchat.send(today_msg, toUserName=name_uuid)
+
 #
 func_list = {}
 func_list[u"我想看电影"] = find_movie
@@ -192,6 +198,8 @@ func_list[u"海淀区"] = get_somewhere
 func_list[u"转语音"] = get_voice
 func_list[u"人数"] = get_onlines
 func_list[u"充值"] = get_charge
+func_list[u"拷包"] = call_mingbo
+func_list[u"烤包"] = call_mingbo
 
 
 #
