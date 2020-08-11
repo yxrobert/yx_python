@@ -164,7 +164,13 @@ def get_onlines(msg, key, idx):
 def get_charge(msg, key, idx):
 	content = sys_cmd.get_charge()
 	itchat.send('%s' % (content), msg['FromUserName'])
-	
+
+def call_mingbo(msg, key, idx):
+	content = u"稍等片刻!已通知!!!"
+	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
+	name_uuid = get_uuid_by_name(u"陈鹏")
+	itchat.send(today_msg, toUserName=name_uuid)
+
 
 def auto_talk(msg):
 	content = talk.qq_talker.do_respons(msg['Text'], msg['FromUserName'])
@@ -172,11 +178,6 @@ def auto_talk(msg):
 	itchat.send('%s' % (content), msg['FromUserName'])
 
 
-def call_mingbo(msg):
-	content = u"稍等片刻!已通知!!!"
-	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
-	name_uuid = get_uuid_by_name(u"陈鹏")
-	itchat.send(today_msg, toUserName=name_uuid)
 
 #
 func_list = {}
