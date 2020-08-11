@@ -4,7 +4,7 @@
 import os
 
 def get_onlines():
-	cmd = "ssh -p 36000 root@152.136.22.243 tail -n 1 /data/home/user00/log/chatlog/Info.2020-04-* | grep \"client connected\""
+	cmd = "ssh -p 36000 root@152.136.22.243 tail -n 1 /data/home/user00/log/chatlog/Info.2020-06-* | grep \"client connected\""
 	f = os.popen(cmd)
 	return f.readlines()[-1]
 

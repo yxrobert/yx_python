@@ -172,6 +172,9 @@ cat id.loc | redis-cli -h 127.0.0.1 -p 37379
 scp /home/administrator/news.txt root@192.168.6.129:/etc/squid
 scp /usr/local/flume_client.tar root@148.153.50.124:/usr/local
 
+scp /data/server/loc_trunk_v1021_202006180912.tar.gz root@172.21.16.17:/data/home/user00/server
+scp root@172.21.16.3:/data/server/loc_trunk_v1021_202006180912.tar.gz  /data/home/user00/server
+
 # 添加公钥
 cat id_rsa.pub >> /home/game/.ssh/authorized_keys
 
@@ -219,5 +222,26 @@ WHERE table_schema = 'mydb';
 -P是设置保存Memcache的pid文件，我这里是保存在 /tmp/memcached.pid
 
 
-
+#
 watch -n 1 'echo "stats" | socat - UNIX-CLIENT:/var/memcache/memcached.sock' 这是看监控数据的办法
+
+# 安装
+memcached 1.6.6
+libevent-2.1.11-stable.tar.gz
+
+vim /etc/ld.so.conf
+
+
+#
+redis-benchmark -h 172.21.16.8 -p 20001 -a "loc#LwJ4PZa64BjP" -c 100 -n 100000 -t SET,GET
+redis-benchmark -h 172.21.16.4 -p 20002 -a "loc##prJnPHf3zrDw" -c 100 -n 100000 -t SET,GET
+
+
+watch -n 3 'netstat -anp | grep 7000  |wc -l'
+
+redis-cli -h 127.0.0.1 -p 7004 -a "" keys "*" |  grep "888:*" | xargs redis-cli -h 127.0.0.1 -p 7004 -a "" del
+redis-cli -h 172.21.16.4 -p 20002 -a "loc##prJnPHf3zrDw" --bigkeys
+
+#
+~/.bash_profile中添加上上面的指令别名alias ls='ls --color'
+
