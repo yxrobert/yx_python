@@ -168,7 +168,7 @@ def get_charge(msg, key, idx):
 def call_mingbo(msg, key, idx):
 	content = u"稍等片刻!已通知!!!"
 	itchat.send('%s: %s' % (msg['Type'], content), msg['FromUserName'])
-	name_uuid = get_uuid_by_name(u"陈鹏")
+	name_uuid = get_uuid_by_name(u"晴穹")
 	itchat.send(u"麻烦拷下包", toUserName=name_uuid)
 
 
