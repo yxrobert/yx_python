@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
 """
 Created on Thu Dec  5 16:45:42 2019
 
@@ -23,6 +25,9 @@ recivier_list = {
 }
 
 def send():
+    global file_path
+    print("OnSend!")
+
     msg = email.mime.multipart.MIMEMultipart()
     msgFrom = 'yX_Robert@163.com' #SMTP的邮箱
     # msgTo = 'yX_Robert_6db7bc@kindle.cn' #亚马逊的邮箱
@@ -46,6 +51,7 @@ def send():
     txt = email.mime.text.MIMEText(content)
     msg.attach(txt)
 
+
     #附件
     #path=file_path
     #file_name=path+name+'.xlsx'
@@ -65,7 +71,7 @@ def send():
 
         for i in recivier_list:    
             smtp.sendmail(msgFrom, i, str(msg))
-            print("%s邮件发送成功", i)
+            print("%s邮件发送成功" % i)
     except smtplib.SMTPException:
         print("Error: 无法发送邮件")
 
@@ -73,7 +79,7 @@ def send():
 
 def callback1():
     global file_path
-    file_path = tkinter.filedialog.askopenfilename(initialdir ="C:/Users/Martin/Downloads",filetypes=( ("亚马逊电子书格式", "mobi"), ("all", "*.*"), ("文本", "*.txt*"),("Excel 97-2003 工作簿", "*.xls")))
+    file_path = tkinter.filedialog.askopenfilename(initialdir ="D:/yX/GitHub/yx_python/kindle",filetypes=( ("亚马逊电子书格式", "mobi"), ("all", "*.*"), ("文本", "*.txt*"),("Excel 97-2003 工作簿", "*.xls")))
     t.insert('insert',file_path)
 
 def t_k():
@@ -99,6 +105,7 @@ def t_k():
     x = (sw-ww) / 2
     y = (sh-wh) / 2
     root.geometry("%dx%d+%d+%d" %(ww,wh,x,y)) #窗口居中
+    print("init ok!")
 
     root.mainloop()
 if __name__=='__main__':

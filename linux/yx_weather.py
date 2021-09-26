@@ -27,7 +27,8 @@ day_desc = [
 	u"大大大大后天",
 ]
 
-def get_gua(x=-1, y=-1):
+
+def get_gua_ex(x=-1, y=-1):
 	idx = str(YI.get_yi_idx(x, y) + 1)
 	idx.zfill(2)
 	gua_url = "https://m.k366.com/gua/1200000-11-%s.htm" % idx
@@ -252,6 +253,27 @@ def get_weather_info(city_code, area, idx = 0):
 	
 
 
+# https://www.guoyi360.com/64gua03/
+def get_gua(x=-1, y=-1):
+	idx = str(YI.get_yi_idx(x, y) + 1)
+	idx.zfill(2)
+	# print(idx)
+	gua_url = "https://www.guoyi360.com/64gua%s/" % idx
+	resp = requests.get(gua_url, headers=headers)
+	# print(resp.encoding)
+	# resp.encoding = 'gb2312'
+	soup_texts = BeautifulSoup(resp.text, 'lxml', fromEncoding="utf-8")
+
+	s = ""
+	con = ""
+	con = soup_texts.select('div[class="pddh-list64gua"]')[0].text
+	print(con)
+	s += con + '\n\n'
+
+	# print(s)
+	return s
+
+
 def main():
 	# s = get_gua()
 	# s = constellation('taurus')
@@ -260,7 +282,8 @@ def main():
 	# s = get_weather_info(101010300, 2)
 	# s = get_weather_info(101010300, 3)
 
-	s = get_weather_info_moji_ex("beijing/chaoyang-district")
+	# s = get_weather_info_moji_ex("beijing/chaoyang-district")
+	s = get_gua(10, 10)
 	print(s)
 
 
