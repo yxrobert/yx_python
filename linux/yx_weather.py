@@ -283,7 +283,7 @@ def main():
 	# s = get_weather_info(101010300, 3)
 
 	# s = get_weather_info_moji_ex("beijing/chaoyang-district")
-	s = get_gua(10, 10)
+	s = get_gua_ex(10, 10)
 	print(s)
 
 

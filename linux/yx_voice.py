@@ -5,7 +5,7 @@ from aip import AipSpeech
 from pydub import AudioSegment
 import os
 
-
+# pip3 install baidu-aip
 # yasm-1.3.0.tar.gz
 # tar jxvf ffmpeg-4.1.3.tar.bz2
 # ./configure --enable-shared --prefix=/monchickey/ffmpeg
